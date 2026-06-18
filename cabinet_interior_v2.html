@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>늑대굴 — 수납 캐비닛 내부 구조도</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+    :root {
+      --black: #0a0a0c;
+      --char: #111116;
+      --wine: #6b1525;
+      --amber: #c8843a;
+      --gold: #e0c060;
+      --silver: #9090a8;
+      --dim: #505060;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 44px 16px 72px;
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .sub {
+      font-size: .7rem;
+      color: var(--silver);
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .divider {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--wine), transparent);
+      margin: 10px auto 36px;
+    }
+
+    .section {
+      width: 100%;
+      max-width: 1060px;
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: .72rem;
+      color: var(--silver);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(107, 21, 37, .3);
+      margin-bottom: 24px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 9px;
+    }
+
+    .card {
+      background: var(--char);
+      border: 1px solid rgba(107, 21, 37, .22);
+      padding: 12px 15px;
+    }
+
+    .card strong {
+      display: block;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .card span {
+      font-size: .68rem;
+      color: var(--silver);
+      line-height: 1.65;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .6rem;
+      background: rgba(107, 21, 37, .2);
+      color: var(--amber);
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* 트랙 (배경) */
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* 썸 (핸들) */
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>수납 캐비닛 — 내부 구조도</h1>
+  <p class="sub">Cabinet Interior · Compartment Layout</p>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════
+     A. 도어 내부 (상단 도어 — 구속구)
+═══════════════════════════════════ -->
+  <div class="section">
+    <p class="section-title">A — 상단 도어 내부 · 구속구</p>
+    <svg viewBox="0 0 1060 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="dBg" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#141018" />
+          <stop offset="100%" stop-color="#0e0c12" />
+        </linearGradient>
+        <linearGradient id="velvet" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1e0c18" />
+          <stop offset="100%" stop-color="#160a12" />
+        </linearGradient>
+        <linearGradient id="dPanel" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#181420" />
+          <stop offset="100%" stop-color="#100e18" />
+        </linearGradient>
+      </defs>
+
+      <!-- door frame -->
+      <rect x="40" y="30" width="980" height="420" fill="url(#dBg)" stroke="#3a3058" stroke-width="2" rx="3" />
+      <!-- velvet lining -->
+      <rect x="50" y="40" width="960" height="400" fill="url(#velvet)" stroke="#2a1828" stroke-width="1" rx="2" />
+      <!-- inner shadow -->
+      <rect x="50" y="40" width="960" height="400" fill="none" stroke="#0a0810" stroke-width="6" rx="2" />
+
+      <!-- HOOK RAIL — 상단 -->
+      <rect x="60" y="52" width="940" height="10" rx="3" fill="#2a2838" stroke="#3a3858" stroke-width="0.8" />
+      <!-- hooks -->
+      <g fill="#606070" stroke="#707080" stroke-width="0.6">
+        <path d="M 100,62 Q 100,78 112,78 Q 124,78 124,62" fill="none" stroke="#808090" stroke-width="1.8" />
+        <line x1="112" y1="62" x2="112" y2="52" stroke="#606070" stroke-width="1.5" />
+        <path d="M 168,62 Q 168,78 180,78 Q 192,78 192,62" fill="none" stroke="#808090" stroke-width="1.8" />
+        <line x1="180" y1="62" x2="180" y2="52" stroke="#606070" stroke-width="1.5" />
+        <path d="M 236,62 Q 236,78 248,78 Q 260,78 260,62" fill="none" stroke="#808090" stroke-width="1.8" />
+        <line x1="248" y1="62" x2="248" y2="52" stroke="#606070" stroke-width="1.5" />
+        <path d="M 304,62 Q 304,78 316,78 Q 328,78 328,62" fill="none" stroke="#808090" stroke-width="1.8" />
+        <line x1="316" y1="62" x2="316" y2="52" stroke="#606070" stroke-width="1.5" />
+        <path d="M 372,62 Q 372,78 384,78 Q 396,78 396,62" fill="none" stroke="#808090" stroke-width="1.8" />
+        <line x1="384" y1="62" x2="384" y2="52" stroke="#606070" stroke-width="1.5" />
+        <path d="M 440,62 Q 440,78 452,78 Q 464,78 464,62" fill="none" stroke="#808090" stroke-width="1.8" />
+        <line x1="452" y1="62" x2="452" y2="52" stroke="#606070" stroke-width="1.5" />
+      </g>
+
+      <!-- SECTION DIVIDERS vertical -->
+      <line x1="390" y1="62" x2="390" y2="430" stroke="#2a2038" stroke-width="1.2" stroke-dasharray="5,3" />
+      <line x1="700" y1="62" x2="700" y2="430" stroke="#2a2038" stroke-width="1.2" stroke-dasharray="5,3" />
+
+      <!-- ══ ZONE 1: 리스트·앵클 커프 (60~390) ══ -->
+      <text x="225" y="100" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500"
+        fill="#c8843a" text-anchor="middle">리스트 · 앵클 커프</text>
+      <line x1="65" y1="108" x2="385" y2="108" stroke="#2a1828" stroke-width="0.8" />
+
+      <!-- 리스트 커프 4종 — 2×2 그리드 -->
+      <!-- cuff 1: 소프트 가죽 -->
+      <g transform="translate(105,160)">
+        <rect x="-35" y="-22" width="70" height="44" rx="20" fill="#1a0e10" stroke="#3a1820" stroke-width="1.5" />
+        <rect x="-35" y="-22" width="70" height="44" rx="20" fill="none" stroke="#2a1418" stroke-width="0.8" />
+        <circle cx="22" cy="0" r="6" fill="none" stroke="#808090" stroke-width="1.8" />
+        <rect x="-28" y="-6" width="18" height="12" rx="2" fill="#251018" stroke="#301818" stroke-width="0.6" />
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">소프트 가죽</text>
+      </g>
+      <!-- cuff 2: 하드 가죽 -->
+      <g transform="translate(215,160)">
+        <rect x="-35" y="-22" width="70" height="44" rx="18" fill="#1a1010" stroke="#3a2820" stroke-width="2" />
+        <circle cx="22" cy="0" r="6" fill="none" stroke="#808090" stroke-width="1.8" />
+        <g fill="#2a1818">
+          <circle cx="-20" cy="0" r="2.5" />
+          <circle cx="-8" cy="0" r="2.5" />
+          <circle cx="4" cy="0" r="2.5" />
+        </g>
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">하드 가죽</text>
+      </g>
+      <!-- cuff 3: 벨벳 내피 -->
+      <g transform="translate(105,258)">
+        <rect x="-35" y="-22" width="70" height="44" rx="20" fill="#201018" stroke="#3a1828" stroke-width="1.5" />
+        <rect x="-28" y="-15" width="56" height="30" rx="16" fill="#2a1420" stroke="#3a1828" stroke-width="0.5" />
+        <circle cx="22" cy="0" r="6" fill="none" stroke="#808090" stroke-width="1.8" />
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">벨벳 내피</text>
+      </g>
+      <!-- cuff 4: 금속 수갑형 -->
+      <g transform="translate(215,258)">
+        <rect x="-35" y="-18" width="70" height="36" rx="18" fill="none" stroke="#707080" stroke-width="2.5" />
+        <rect x="-35" y="-18" width="35" height="36" rx="18" fill="none" stroke="#606070" stroke-width="2" />
+        <circle cx="0" cy="0" r="8" fill="#303040" stroke="#505060" stroke-width="1.5" />
+        <text x="0" y="32" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">금속 수갑형</text>
+      </g>
+
+      <!-- 앵클 커프 3종 -->
+      <text x="330" y="135" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#808098"
+        text-anchor="middle">앵클</text>
+      <g transform="translate(330,172)">
+        <ellipse cx="0" cy="0" rx="38" ry="24" fill="#1a0e10" stroke="#3a1820" stroke-width="1.5" />
+        <ellipse cx="0" cy="0" rx="30" ry="16" fill="#100c0e" stroke="#2a1418" stroke-width="0.6" />
+        <circle cx="25" cy="0" r="6" fill="none" stroke="#808090" stroke-width="1.8" />
+        <text x="0" y="38" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">체인 연결형</text>
+      </g>
+      <g transform="translate(330,248)">
+        <ellipse cx="0" cy="0" rx="38" ry="24" fill="#1a1010" stroke="#3a2820" stroke-width="2" />
+        <ellipse cx="0" cy="0" rx="30" ry="16" fill="#100e0e" stroke="#2a1818" stroke-width="0.6" />
+        <circle cx="25" cy="0" r="6" fill="none" stroke="#808090" stroke-width="1.8" />
+        <text x="0" y="38" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">스트랩 연결형</text>
+      </g>
+      <g transform="translate(330,322)">
+        <ellipse cx="0" cy="0" rx="38" ry="24" fill="#201018" stroke="#3a1828" stroke-width="1.5" />
+        <ellipse cx="0" cy="0" rx="30" ry="16" fill="#180e14" stroke="#2a1420" stroke-width="0.6" />
+        <circle cx="25" cy="0" r="6" fill="none" stroke="#808090" stroke-width="1.8" />
+        <text x="0" y="38" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">매칭 소프트</text>
+      </g>
+
+      <!-- 썸커프 + 호그타이 -->
+      <g transform="translate(225,358)">
+        <circle cx="-12" cy="0" r="9" fill="none" stroke="#707080" stroke-width="2" />
+        <circle cx="12" cy="0" r="9" fill="none" stroke="#707080" stroke-width="2" />
+        <line x1="-3" y1="0" x2="3" y2="0" stroke="#606070" stroke-width="1.5" />
+        <text x="0" y="20" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">썸 커프</text>
+      </g>
+      <g transform="translate(105,358)">
+        <line x1="-28" y1="0" x2="28" y2="0" stroke="#707080" stroke-width="3" stroke-linecap="round" />
+        <circle cx="-28" cy="0" r="5" fill="none" stroke="#808090" stroke-width="1.5" />
+        <circle cx="28" cy="0" r="5" fill="none" stroke="#808090" stroke-width="1.5" />
+        <text x="0" y="20" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">호그타이 커넥터</text>
+      </g>
+
+      <!-- ══ ZONE 2: 스프레더 바·포지셔닝 (390~700) ══ -->
+      <text x="545" y="100" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500"
+        fill="#c8843a" text-anchor="middle">스프레더 바 · 포지셔닝</text>
+      <line x1="395" y1="108" x2="695" y2="108" stroke="#2a1828" stroke-width="0.8" />
+
+      <!-- 스프레더 바 3종 수평 걸기 -->
+      <g transform="translate(545,165)">
+        <!-- short -->
+        <line x1="-100" y1="-30" x2="100" y2="-30" stroke="#505060" stroke-width="3.5" stroke-linecap="round" />
+        <circle cx="-100" cy="-30" r="7" fill="none" stroke="#707080" stroke-width="1.8" />
+        <circle cx="100" cy="-30" r="7" fill="none" stroke="#707080" stroke-width="1.8" />
+        <text x="0" y="-14" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">쇼트 (40cm)</text>
+
+        <!-- medium -->
+        <line x1="-120" y1="20" x2="120" y2="20" stroke="#505060" stroke-width="3.5" stroke-linecap="round" />
+        <circle cx="-120" cy="20" r="7" fill="none" stroke="#707080" stroke-width="1.8" />
+        <circle cx="120" cy="20" r="7" fill="none" stroke="#707080" stroke-width="1.8" />
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">미디엄 (60cm)</text>
+
+        <!-- long -->
+        <line x1="-140" y1="70" x2="140" y2="70" stroke="#505060" stroke-width="3.5" stroke-linecap="round" />
+        <circle cx="-140" cy="70" r="7" fill="none" stroke="#707080" stroke-width="1.8" />
+        <circle cx="140" cy="70" r="7" fill="none" stroke="#707080" stroke-width="1.8" />
+        <text x="0" y="86" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">롱 (80cm · 조절형)</text>
+      </g>
+
+      <!-- 포지셔닝 스트랩 -->
+      <g transform="translate(545,330)">
+        <rect x="-80" y="-12" width="160" height="24" rx="10" fill="#1a0e10" stroke="#3a1820" stroke-width="1.5" />
+        <rect x="-60" y="-8" width="120" height="16" rx="8" fill="#140c0e" stroke="#2a1418" stroke-width="0.6" />
+        <rect x="52" y="-6" width="22" height="12" fill="none" stroke="#808090" stroke-width="1.2" rx="2" />
+        <text x="0" y="24" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">포지셔닝 스트랩</text>
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">길이 조절 · 버클형</text>
+      </g>
+
+      <!-- 암 바인더 -->
+      <g transform="translate(545,398)">
+        <rect x="-90" y="-10" width="180" height="20" rx="8" fill="#1a0e10" stroke="#3a1820" stroke-width="1.5" />
+        <line x1="-50" y1="-10" x2="-50" y2="10" stroke="#2a1418" stroke-width="0.8" />
+        <line x1="50" y1="-10" x2="50" y2="10" stroke="#2a1418" stroke-width="0.8" />
+        <text x="0" y="24" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">암 바인더</text>
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">등 뒤 고정 · 롤형</text>
+      </g>
+
+      <!-- ══ ZONE 3: 파우치 섹션 (700~1000) ══ -->
+      <text x="850" y="100" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500"
+        fill="#c8843a" text-anchor="middle">파우치 · 소형 구속구</text>
+      <line x1="705" y1="108" x2="990" y2="108" stroke="#2a1828" stroke-width="0.8" />
+
+      <!-- 파우치들 -->
+      <!-- pouch 1: 발목·무릎 스트랩 -->
+      <g transform="translate(760,175)">
+        <rect x="-45" y="-55" width="90" height="110" rx="4" fill="#1a1018" stroke="#2a2038" stroke-width="1.2" />
+        <rect x="-38" y="-48" width="76" height="96" rx="3" fill="#141018" stroke="#201828" stroke-width="0.6" />
+        <!-- rolled straps inside -->
+        <circle cx="-15" cy="-20" r="16" fill="none" stroke="#3a1820" stroke-width="2" />
+        <circle cx="-15" cy="-20" r="10" fill="none" stroke="#2a1418" stroke-width="1.5" />
+        <circle cx="18" cy="-20" r="12" fill="none" stroke="#3a2820" stroke-width="2" />
+        <circle cx="18" cy="-20" r="7" fill="none" stroke="#2a1818" stroke-width="1.5" />
+        <circle cx="0" cy="22" r="14" fill="none" stroke="#3a1828" stroke-width="2" />
+        <text x="0" y="72" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">발목·무릎 스트랩</text>
+        <text x="0" y="84" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">파우치 수납</text>
+      </g>
+
+      <!-- pouch 2: 오버헤드 바 -->
+      <g transform="translate(880,155)">
+        <rect x="-55" y="-40" width="110" height="80" rx="4" fill="#181420" stroke="#282038" stroke-width="1.2" />
+        <line x1="-40" y1="0" x2="40" y2="0" stroke="#404058" stroke-width="3" stroke-linecap="round" />
+        <!-- pulley wheel -->
+        <circle cx="0" cy="-18" r="14" fill="none" stroke="#505068" stroke-width="1.5" />
+        <circle cx="0" cy="-18" r="7" fill="#303048" stroke="#404058" stroke-width="1" />
+        <text x="0" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">오버헤드 바</text>
+        <text x="0" y="68" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">풀리 내장 · 분리 수납</text>
+      </g>
+
+      <!-- hook rail items hanging -->
+      <g transform="translate(760,310)">
+        <!-- 링 훅 걸기 -->
+        <circle cx="-30" cy="0" r="14" fill="none" stroke="#505060" stroke-width="2" />
+        <circle cx="-30" cy="0" r="8" fill="none" stroke="#404050" stroke-width="1.2" />
+        <text x="-30" y="24" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">D링 세트</text>
+        <circle cx="20" cy="0" r="11" fill="none" stroke="#707080" stroke-width="2" />
+        <path d="M 9,-4 Q 20,-14 31,-4" fill="none" stroke="#606070" stroke-width="1.5" />
+        <text x="20" y="24" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">카라비너</text>
+        <rect x="50" y="-12" width="30" height="24" fill="none" stroke="#606070" stroke-width="1.5" rx="2" />
+        <line x1="55" y1="0" x2="75" y2="0" stroke="#505060" stroke-width="1" />
+        <text x="65" y="24" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">커넥터</text>
+      </g>
+
+      <!-- 저널 -->
+      <g transform="translate(870,350)">
+        <rect x="-35" y="-50" width="70" height="90" rx="2" fill="#0e0c14" stroke="#252030" stroke-width="1.5" />
+        <rect x="-28" y="-44" width="56" height="78" rx="1" fill="#0a0a10" stroke="#1a1820" stroke-width="0.6" />
+        <line x1="-20" y1="-30" x2="20" y2="-30" stroke="#2a2038" stroke-width="0.8" />
+        <line x1="-20" y1="-18" x2="20" y2="-18" stroke="#2a2038" stroke-width="0.8" />
+        <line x1="-20" y1="-6" x2="20" y2="-6" stroke="#2a2038" stroke-width="0.8" />
+        <line x1="-20" y1="6" x2="20" y2="6" stroke="#2a2038" stroke-width="0.8" />
+        <line x1="-20" y1="18" x2="5" y2="18" stroke="#2a2038" stroke-width="0.8" />
+        <text x="0" y="58" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">저널</text>
+        <text x="0" y="70" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">기록 전용</text>
+      </g>
+
+      <!-- section label -->
+      <text x="545" y="460" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#404050"
+        text-anchor="middle" letter-spacing="2">상단 도어 내부 — 딥 버건디 벨벳 라이너 (차수혁의 색)</text>
+    </svg>
+    <div class="grid">
+      <div class="card"><strong>훅 레일 (상단)</strong><span>6개 S훅 / 호그타이·커넥터·D링 걸기 전용 / 무광 건메탈</span>
+        <div class="tag">건메탈 훅</div>
+      </div>
+      <div class="card"><strong>커프 존 (좌)</strong><span>리스트 4종 + 앵클 3종 + 썸 커프 / 페어 단위 케이스 수납</span>
+        <div class="tag">케이스 · 벨벳 내피</div>
+      </div>
+      <div class="card"><strong>스프레더 바 존 (중)</strong><span>쇼트·미디엄·롱 3종 수평 거치 / 포지셔닝 스트랩·암 바인더 롤형</span>
+        <div class="tag">수평 브래킷</div>
+      </div>
+      <div class="card"><strong>파우치 존 (우)</strong><span>발목·무릎 스트랩 파우치 / 오버헤드 바 분리 수납 / 저널 · D링 세트</span>
+        <div class="tag">파우치 · 분리 수납</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     B. 도어 내부 (하단 도어 — 감각 차단·컨트롤)
+═══════════════════════════════════ -->
+  <div class="section">
+    <p class="section-title">B — 하단 도어 내부 · 감각 차단 · 컨트롤</p>
+    <svg viewBox="0 0 1060 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="dBg2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#141018" />
+          <stop offset="100%" stop-color="#0e0c12" />
+        </linearGradient>
+        <linearGradient id="vel2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1e0c18" />
+          <stop offset="100%" stop-color="#160a12" />
+        </linearGradient>
+      </defs>
+
+      <rect x="40" y="25" width="980" height="355" fill="url(#dBg2)" stroke="#3a3058" stroke-width="2" rx="3" />
+      <rect x="50" y="35" width="960" height="335" fill="url(#vel2)" stroke="#2a1828" stroke-width="1" rx="2" />
+      <rect x="50" y="35" width="960" height="335" fill="none" stroke="#0a0810" stroke-width="6" rx="2" />
+
+      <!-- dividers -->
+      <line x1="340" y1="45" x2="340" y2="360" stroke="#2a2038" stroke-width="1.2" stroke-dasharray="5,3" />
+      <line x1="620" y1="45" x2="620" y2="360" stroke="#2a2038" stroke-width="1.2" stroke-dasharray="5,3" />
+      <line x1="820" y1="45" x2="820" y2="360" stroke="#2a2038" stroke-width="1.2" stroke-dasharray="5,3" />
+
+      <!-- ZONE 1: 블라인드폴드·이어플러그·후드 -->
+      <text x="195" y="70" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500" fill="#c8843a"
+        text-anchor="middle">감각 차단</text>
+      <line x1="55" y1="78" x2="335" y2="78" stroke="#2a1828" stroke-width="0.8" />
+
+      <!-- blindfolds 3종 접어서 -->
+      <g transform="translate(100,155)">
+        <rect x="-42" y="-18" width="84" height="36" rx="16" fill="#0e0c18" stroke="#252035" stroke-width="1.5" />
+        <rect x="-36" y="-12" width="72" height="24" rx="12" fill="#181428" stroke="#201830" stroke-width="0.6" />
+        <text x="0" y="30" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">실크 블라인드폴드</text>
+      </g>
+      <g transform="translate(100,225)">
+        <rect x="-42" y="-18" width="84" height="36" rx="12" fill="#1a0e10" stroke="#3a1820" stroke-width="1.5" />
+        <rect x="-36" y="-12" width="72" height="24" rx="8" fill="#140c0e" stroke="#241418" stroke-width="0.6" />
+        <text x="0" y="30" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">가죽 블라인드폴드</text>
+      </g>
+      <g transform="translate(100,295)">
+        <rect x="-42" y="-18" width="84" height="36" rx="10" fill="#1a1828" stroke="#2a2838" stroke-width="1.5" />
+        <rect x="-36" y="-12" width="72" height="24" rx="6" fill="#141220" stroke="#1e1828" stroke-width="0.6" />
+        <text x="0" y="30" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">네오프렌 패딩형</text>
+      </g>
+      <!-- ear plugs + hood -->
+      <g transform="translate(240,155)">
+        <ellipse cx="-14" cy="0" rx="10" ry="16" fill="#1a1828" stroke="#303048" stroke-width="1.2" />
+        <ellipse cx="14" cy="0" rx="10" ry="16" fill="#1a1828" stroke="#303048" stroke-width="1.2" />
+        <path d="M -4,0 Q 0,-8 4,0" fill="none" stroke="#404058" stroke-width="1" />
+        <text x="0" y="30" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">이어 플러그</text>
+      </g>
+      <!-- hood mask -->
+      <g transform="translate(240,250)">
+        <ellipse cx="0" cy="-10" rx="30" ry="35" fill="#1a0e10" stroke="#2a1418" stroke-width="1.5" />
+        <ellipse cx="0" cy="5" rx="24" ry="12" fill="#140c0e" stroke="#201410" stroke-width="0.6" />
+        <!-- eye holes -->
+        <ellipse cx="-10" cy="-10" rx="7" ry="5" fill="#0a0808" stroke="#251010" stroke-width="0.8" />
+        <ellipse cx="10" cy="-10" rx="7" ry="5" fill="#0a0808" stroke="#251010" stroke-width="0.8" />
+        <!-- mouth opening -->
+        <ellipse cx="0" cy="8" rx="10" ry="6" fill="#0a0808" stroke="#201010" stroke-width="0.8" />
+        <text x="0" y="58" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">오픈 마우스 후드</text>
+      </g>
+      <!-- full cover hood -->
+      <g transform="translate(295,310)">
+        <ellipse cx="0" cy="-8" rx="28" ry="32" fill="#1a1010" stroke="#2a1818" stroke-width="1.5" />
+        <ellipse cx="0" cy="6" rx="22" ry="10" fill="#140e0e" stroke="#201414" stroke-width="0.6" />
+        <text x="0" y="44" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">풀 커버 후드</text>
+      </g>
+
+      <!-- ZONE 2: 개구기 -->
+      <text x="480" y="70" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500" fill="#c8843a"
+        text-anchor="middle">개구기</text>
+      <line x1="345" y1="78" x2="615" y2="78" stroke="#2a1828" stroke-width="0.8" />
+      <!-- ring gag -->
+      <g transform="translate(430,180)">
+        <circle cx="0" cy="0" r="32" fill="none" stroke="#505060" stroke-width="3" />
+        <circle cx="0" cy="0" r="24" fill="none" stroke="#404050" stroke-width="1.5" />
+        <!-- strap -->
+        <rect x="-55" y="-6" width="20" height="12" rx="4" fill="#1a0e10" stroke="#2a1418" stroke-width="1" />
+        <rect x="35" y="-6" width="20" height="12" rx="4" fill="#1a0e10" stroke="#2a1418" stroke-width="1" />
+        <text x="0" y="52" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#e0c060"
+          text-anchor="middle">링형 개구기</text>
+      </g>
+      <!-- plate gag -->
+      <g transform="translate(540,180)">
+        <rect x="-30" y="-20" width="60" height="40" rx="8" fill="#201828" stroke="#302838" stroke-width="1.5" />
+        <ellipse cx="0" cy="0" rx="18" ry="12" fill="#1a1420" stroke="#282038" stroke-width="0.8" />
+        <rect x="-48" y="-6" width="15" height="12" rx="4" fill="#1a0e10" stroke="#2a1418" stroke-width="1" />
+        <rect x="33" y="-6" width="15" height="12" rx="4" fill="#1a0e10" stroke="#2a1418" stroke-width="1" />
+        <text x="0" y="38" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#e0c060"
+          text-anchor="middle">플레이트형</text>
+      </g>
+      <!-- gag storage box -->
+      <g transform="translate(480,300)">
+        <rect x="-80" y="-22" width="160" height="44" rx="3" fill="#141018" stroke="#2a2038" stroke-width="1" />
+        <text x="0" y="-6" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#808098"
+          text-anchor="middle">전용 케이스 수납</text>
+        <text x="0" y="8" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#505060"
+          text-anchor="middle">사용 전후 세척 · 건조 필수</text>
+      </g>
+
+      <!-- ZONE 3: 타이머·리모트 -->
+      <text x="720" y="70" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500" fill="#c8843a"
+        text-anchor="middle">타이머 · 리모트</text>
+      <line x1="625" y1="78" x2="815" y2="78" stroke="#2a1828" stroke-width="0.8" />
+      <!-- timer -->
+      <g transform="translate(690,185)">
+        <rect x="-38" y="-50" width="76" height="90" rx="4" fill="#0e0c16" stroke="#252035" stroke-width="1.5" />
+        <rect x="-30" y="-42" width="60" height="60" rx="2" fill="#080810" stroke="#181828" stroke-width="0.6" />
+        <text x="0" y="5" font-family="Inter,'Noto Sans KR',sans-serif" font-size="18" font-weight="300" fill="#c8843a"
+          text-anchor="middle">00:00</text>
+        <rect x="-20" y="26" width="40" height="8" rx="2" fill="#181828" stroke="#252035" stroke-width="0.5" />
+        <text x="0" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#e0c060"
+          text-anchor="middle">디지털 타이머</text>
+        <text x="0" y="68" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">무광 블랙 / 알람 출력</text>
+      </g>
+      <!-- remote -->
+      <g transform="translate(760,185)">
+        <rect x="-22" y="-52" width="44" height="88" rx="10" fill="#0e0c16" stroke="#252035" stroke-width="1.5" />
+        <circle cx="0" cy="-28" r="10" fill="#181828" stroke="#252038" stroke-width="0.8" />
+        <rect x="-12" y="-8" width="10" height="8" rx="2" fill="#181828" stroke="#252038" stroke-width="0.6" />
+        <rect x="2" y="-8" width="10" height="8" rx="2" fill="#181828" stroke="#252038" stroke-width="0.6" />
+        <rect x="-12" y="6" width="10" height="8" rx="2" fill="#c8843a" opacity="0.4" stroke="#c8843a"
+          stroke-width="0.6" />
+        <rect x="2" y="6" width="10" height="8" rx="2" fill="#181828" stroke="#252038" stroke-width="0.6" />
+        <rect x="-8" y="20" width="16" height="8" rx="2" fill="#181828" stroke="#252038" stroke-width="0.6" />
+        <text x="0" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#e0c060"
+          text-anchor="middle">리모트 컨트롤러</text>
+        <text x="0" y="68" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">무선 기기 통합</text>
+      </g>
+
+      <!-- ZONE 4: 안전·케어 -->
+      <text x="910" y="70" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="500" fill="#c8843a"
+        text-anchor="middle">안전 · 케어</text>
+      <line x1="825" y1="78" x2="990" y2="78" stroke="#2a1828" stroke-width="0.8" />
+      <!-- safe word card -->
+      <g transform="translate(880,155)">
+        <rect x="-40" y="-28" width="80" height="56" rx="4" fill="#0e0c14" stroke="#252030" stroke-width="1.2" />
+        <line x1="-30" y1="-14" x2="30" y2="-14" stroke="#2a2038" stroke-width="1" />
+        <line x1="-30" y1="-4" x2="30" y2="-4" stroke="#2a2038" stroke-width="1" />
+        <line x1="-30" y1="6" x2="15" y2="6" stroke="#2a2038" stroke-width="1" />
+        <rect x="-18" y="14" width="36" height="8" rx="2" fill="#3a0a14" stroke="#5a0e1e" stroke-width="0.8" />
+        <text x="0" y="42" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">세이프워드 카드</text>
+      </g>
+      <!-- EMT scissors + care kit -->
+      <g transform="translate(880,260)">
+        <rect x="-50" y="-30" width="100" height="60" rx="3" fill="#0e0c14" stroke="#1e1c28" stroke-width="1" />
+        <!-- scissors icon -->
+        <line x1="-30" y1="-15" x2="10" y2="15" stroke="#505060" stroke-width="2" stroke-linecap="round" />
+        <line x1="-30" y1="15" x2="10" y2="-15" stroke="#505060" stroke-width="2" stroke-linecap="round" />
+        <circle cx="-30" cy="-15" r="5" fill="none" stroke="#606070" stroke-width="1.2" />
+        <circle cx="-30" cy="15" r="5" fill="none" stroke="#606070" stroke-width="1.2" />
+        <!-- plus -->
+        <line x1="28" y1="-10" x2="28" y2="10" stroke="#c8843a" stroke-width="2" />
+        <line x1="18" y1="0" x2="38" y2="0" stroke="#c8843a" stroke-width="2" />
+        <text x="0" y="44" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">안전 가위 · 케어 키트</text>
+        <text x="0" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#606070"
+          text-anchor="middle">항상 손 닿는 위치</text>
+      </g>
+
+      <text x="545" y="380" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#404050"
+        text-anchor="middle" letter-spacing="2">하단 도어 내부 — 딥 버건디 벨벳 라이너 (차수혁의 색)</text>
+    </svg>
+    <div class="grid">
+      <div class="card"><strong>감각 차단 존</strong><span>블라인드폴드 3종 (실크·가죽·네오프렌) / 이어 플러그 / 후드 마스크 2종 (오픈·풀커버)</span>
+        <div class="tag">케이스 · 벨벳 내피</div>
+      </div>
+      <div class="card"><strong>개구기 존</strong><span>링형 + 플레이트형 2종 / 전용 케이스 수납 / 사용 후 세척·건조 필수</span>
+        <div class="tag">전용 케이스</div>
+      </div>
+      <div class="card"><strong>컨트롤 존</strong><span>디지털 타이머 (알람 출력) + 리모트 컨트롤러 (무선 기기 통합)</span>
+        <div class="tag">무광 블랙</div>
+      </div>
+      <div class="card"><strong>안전·케어 존</strong><span>세이프워드 카드 / 안전 가위 / 케어 키트 — 항상 손 닿는 위치</span>
+        <div class="tag">우선 접근</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+     C. 서랍 3단 내부
+═══════════════════════════════════ -->
+  <div class="section">
+    <p class="section-title">C — 서랍 3단 내부 · 바이브레이터 · 딜도 · 플러그</p>
+    <svg viewBox="0 0 1060 620" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="drBg" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#141018" />
+          <stop offset="100%" stop-color="#0e0c12" />
+        </linearGradient>
+        <linearGradient id="drV" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1e0c18" />
+          <stop offset="100%" stop-color="#160a12" />
+        </linearGradient>
+        <linearGradient id="silicone" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1a1028" />
+          <stop offset="100%" stop-color="#120c1e" />
+        </linearGradient>
+        <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2a3040" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="#1a2030" stop-opacity="0.6" />
+        </linearGradient>
+        <linearGradient id="metal" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#505060" />
+          <stop offset="100%" stop-color="#303040" />
+        </linearGradient>
+      </defs>
+
+      <!-- ══ DRAWER 1: 바이브레이터 ══ -->
+      <!-- drawer frame -->
+      <rect x="40" y="20" width="980" height="175" fill="url(#drBg)" stroke="#3a3058" stroke-width="2" rx="3" />
+      <rect x="50" y="30" width="960" height="155" fill="url(#drV)" stroke="#2a1828" stroke-width="1" rx="2" />
+      <!-- drawer label -->
+      <rect x="50" y="30" width="960" height="22" fill="#0e0c16" stroke="none" rx="2" />
+      <text x="530" y="46" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="500" fill="#c8843a"
+        text-anchor="middle" letter-spacing="2">서랍 1단 — 바이브레이터</text>
+      <!-- dividers -->
+      <line x1="220" y1="52" x2="220" y2="175" stroke="#2a2038" stroke-width="1" />
+      <line x1="400" y1="52" x2="400" y2="175" stroke="#2a2038" stroke-width="1" />
+      <line x1="580" y1="52" x2="580" y2="175" stroke="#2a2038" stroke-width="1" />
+      <line x1="760" y1="52" x2="760" y2="175" stroke="#2a2038" stroke-width="1" />
+      <line x1="900" y1="52" x2="900" y2="175" stroke="#2a2038" stroke-width="1" />
+
+      <!-- vibe 1: 소형 무선 -->
+      <g transform="translate(135,115)">
+        <ellipse cx="0" cy="0" rx="18" ry="38" fill="url(#silicone)" stroke="#252035" stroke-width="1.2" />
+        <ellipse cx="0" cy="-28" rx="12" ry="8" fill="#201830" stroke="#302040" stroke-width="0.8" />
+        <text x="0" y="52" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">소형 무선</text>
+        <text x="0" y="63" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">외부 자극형</text>
+      </g>
+      <!-- vibe 2: 웨어러블 -->
+      <g transform="translate(310,115)">
+        <path d="M -22,-10 Q -28,0 -22,10 Q 0,30 22,10 Q 28,0 22,-10 Q 0,-30 -22,-10" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <circle cx="0" cy="0" r="8" fill="#201830" stroke="#302040" stroke-width="0.8" />
+        <text x="0" y="44" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">웨어러블</text>
+        <text x="0" y="55" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">리모트 연동</text>
+      </g>
+      <!-- vibe 3: 프로스테이트 -->
+      <g transform="translate(490,115)">
+        <path d="M 0,-40 Q 20,-40 22,-20 Q 24,0 10,15 Q 0,22 -10,15 Q -24,0 -22,-20 Q -20,-40 0,-40"
+          fill="url(#silicone)" stroke="#252035" stroke-width="1.2" />
+        <ellipse cx="0" cy="-30" rx="10" ry="6" fill="#201830" stroke="#302040" stroke-width="0.8" />
+        <text x="0" y="52" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">프로스테이트</text>
+        <text x="0" y="63" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">곡선형 · 단계 조절</text>
+      </g>
+      <!-- vibe 4: 바이브레이팅 링 -->
+      <g transform="translate(670,115)">
+        <circle cx="0" cy="0" r="26" fill="none" stroke="#252035" stroke-width="6" />
+        <circle cx="0" cy="-26" r="10" fill="url(#silicone)" stroke="#302040" stroke-width="0.8" />
+        <text x="0" y="48" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">바이브레이팅 링</text>
+        <text x="0" y="59" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">차수혁 착용</text>
+      </g>
+      <!-- cleaning kit -->
+      <g transform="translate(830,115)">
+        <rect x="-35" y="-32" width="70" height="64" rx="3" fill="#0e0c14" stroke="#1e1c28" stroke-width="1" />
+        <line x1="-25" y1="-18" x2="25" y2="-18" stroke="#2a2038" stroke-width="0.8" />
+        <line x1="-25" y1="-8" x2="25" y2="-8" stroke="#2a2038" stroke-width="0.8" />
+        <line x1="-25" y1="2" x2="25" y2="2" stroke="#2a2038" stroke-width="0.8" />
+        <text x="0" y="46" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">세척 키트</text>
+      </g>
+      <g transform="translate(960,115)">
+        <rect x="-25" y="-40" width="50" height="80" rx="20" fill="#1a1828" stroke="#252838" stroke-width="1.2" />
+        <rect x="-15" y="-32" width="30" height="52" rx="14" fill="#141220" stroke="#1e1828" stroke-width="0.5" />
+        <text x="0" y="52" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">완드</text>
+      </g>
+
+      <!-- ══ DRAWER 2: 딜도 ══ -->
+      <rect x="40" y="215" width="980" height="185" fill="url(#drBg)" stroke="#3a3058" stroke-width="2" rx="3" />
+      <rect x="50" y="225" width="960" height="165" fill="url(#drV)" stroke="#2a1828" stroke-width="1" rx="2" />
+      <rect x="50" y="225" width="960" height="22" fill="#0e0c16" stroke="none" rx="2" />
+      <text x="530" y="241" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="500"
+        fill="#c8843a" text-anchor="middle" letter-spacing="2">서랍 2단 — 딜도</text>
+      <line x1="195" y1="247" x2="195" y2="390" stroke="#2a2038" stroke-width="1" />
+      <line x1="345" y1="247" x2="345" y2="390" stroke="#2a2038" stroke-width="1" />
+      <line x1="495" y1="247" x2="495" y2="390" stroke="#2a2038" stroke-width="1" />
+      <line x1="645" y1="247" x2="645" y2="390" stroke="#2a2038" stroke-width="1" />
+      <line x1="795" y1="247" x2="795" y2="390" stroke="#2a2038" stroke-width="1" />
+      <line x1="900" y1="247" x2="900" y2="390" stroke="#2a2038" stroke-width="1" />
+
+      <!-- 글라스 딜도 소 -->
+      <g transform="translate(122,315)">
+        <ellipse cx="0" cy="-42" rx="14" ry="16" fill="url(#glass)" stroke="#4a5870" stroke-width="1.2" opacity="0.9" />
+        <rect x="-10" y="-30" width="20" height="60" fill="url(#glass)" stroke="#4a5870" stroke-width="1" opacity="0.9"
+          rx="2" />
+        <ellipse cx="0" cy="32" rx="10" ry="8" fill="url(#glass)" stroke="#4a5870" stroke-width="1" opacity="0.9" />
+        <text x="0" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">글라스 소형</text>
+        <text x="0" y="67" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">냉온 겸용</text>
+      </g>
+      <!-- 글라스 딜도 대 -->
+      <g transform="translate(270,310)">
+        <ellipse cx="0" cy="-52" rx="16" ry="18" fill="url(#glass)" stroke="#4a5870" stroke-width="1.2" opacity="0.9" />
+        <rect x="-12" y="-38" width="24" height="75" fill="url(#glass)" stroke="#4a5870" stroke-width="1" opacity="0.9"
+          rx="2" />
+        <ellipse cx="0" cy="39" rx="12" ry="9" fill="url(#glass)" stroke="#4a5870" stroke-width="1" opacity="0.9" />
+        <text x="0" y="62" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">글라스 대형</text>
+        <text x="0" y="73" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">냉온 겸용</text>
+      </g>
+      <!-- 실리콘 리얼형 -->
+      <g transform="translate(420,312)">
+        <ellipse cx="0" cy="-48" rx="15" ry="17" fill="url(#silicone)" stroke="#252035" stroke-width="1.2" />
+        <rect x="-12" y="-35" width="24" height="70" fill="url(#silicone)" stroke="#252035" stroke-width="1" rx="2" />
+        <ellipse cx="0" cy="37" rx="12" ry="9" fill="#201830" stroke="#302040" stroke-width="0.8" />
+        <text x="0" y="60" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">실리콘 리얼형</text>
+      </g>
+      <!-- 곡선형 -->
+      <g transform="translate(570,312)">
+        <path d="M 0,-60 Q 18,-50 18,-20 Q 18,10 0,20 Q -14,10 -14,-20 Q -14,-50 0,-60" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">실리콘 곡선형</text>
+      </g>
+      <!-- 흡착형 -->
+      <g transform="translate(720,318)">
+        <ellipse cx="0" cy="-38" rx="13" ry="15" fill="url(#silicone)" stroke="#252035" stroke-width="1.2" />
+        <rect x="-10" y="-26" width="20" height="50" fill="url(#silicone)" stroke="#252035" stroke-width="1" rx="2" />
+        <!-- suction base -->
+        <ellipse cx="0" cy="28" rx="22" ry="8" fill="#1a1028" stroke="#252038" stroke-width="1.2" />
+        <ellipse cx="0" cy="28" rx="16" ry="5" fill="#141020" stroke="#1e1830" stroke-width="0.6" />
+        <text x="0" y="48" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">흡착 베이스형</text>
+      </g>
+      <!-- 이중 자극형 -->
+      <g transform="translate(848,315)">
+        <path d="M -10,-50 Q -10,-60 0,-60 Q 10,-60 10,-50 L 10,20 Q 10,28 0,28 Q -10,28 -10,20 Z" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1" />
+        <path d="M 10,-30 Q 10,-40 18,-40 Q 26,-40 26,-30 L 26,10 Q 26,18 18,18 Q 10,18 10,10 Z" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1" />
+        <text x="8" y="48" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">이중 자극형</text>
+      </g>
+      <!-- 진동형 -->
+      <g transform="translate(955,315)">
+        <ellipse cx="0" cy="-42" rx="13" ry="15" fill="url(#silicone)" stroke="#252035" stroke-width="1.2" />
+        <rect x="-10" y="-30" width="20" height="65" fill="url(#silicone)" stroke="#252035" stroke-width="1" rx="2" />
+        <!-- motor indicator -->
+        <circle cx="0" cy="5" r="5" fill="#c8843a" opacity="0.3" stroke="#c8843a" stroke-width="0.8" />
+        <text x="0" y="48" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#e0c060"
+          text-anchor="middle">진동형</text>
+      </g>
+
+      <!-- ══ DRAWER 3: 플러그 ══ -->
+      <rect x="40" y="420" width="980" height="185" fill="url(#drBg)" stroke="#3a3058" stroke-width="2" rx="3" />
+      <rect x="50" y="430" width="960" height="165" fill="url(#drV)" stroke="#2a1828" stroke-width="1" rx="2" />
+      <rect x="50" y="430" width="960" height="22" fill="#0e0c16" stroke="none" rx="2" />
+      <text x="530" y="446" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="500"
+        fill="#c8843a" text-anchor="middle" letter-spacing="2">서랍 3단 — 플러그</text>
+      <line x1="165" y1="452" x2="165" y2="595" stroke="#2a2038" stroke-width="1" />
+      <line x1="280" y1="452" x2="280" y2="595" stroke="#2a2038" stroke-width="1" />
+      <line x1="395" y1="452" x2="395" y2="595" stroke="#2a2038" stroke-width="1" />
+      <line x1="510" y1="452" x2="510" y2="595" stroke="#2a2038" stroke-width="1" />
+      <line x1="625" y1="452" x2="625" y2="595" stroke="#2a2038" stroke-width="1" />
+      <line x1="740" y1="452" x2="740" y2="595" stroke="#2a2038" stroke-width="1" />
+      <line x1="855" y1="452" x2="855" y2="595" stroke="#2a2038" stroke-width="1" />
+
+      <!-- plug 소형 실리콘 -->
+      <g transform="translate(107,530)">
+        <path d="M 0,-48 Q 10,-44 10,-20 Q 10,0 0,6 Q -10,0 -10,-20 Q -10,-44 0,-48" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <ellipse cx="0" cy="10" rx="14" ry="5" fill="#1a1028" stroke="#252038" stroke-width="1" />
+        <text x="0" y="30" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">소형 실리콘</text>
+      </g>
+      <!-- 중형 실리콘 -->
+      <g transform="translate(222,525)">
+        <path d="M 0,-55 Q 13,-50 13,-22 Q 13,2 0,10 Q -13,2 -13,-22 Q -13,-50 0,-55" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <ellipse cx="0" cy="14" rx="17" ry="6" fill="#1a1028" stroke="#252038" stroke-width="1" />
+        <text x="0" y="34" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">중형 실리콘</text>
+      </g>
+      <!-- 대형 실리콘 -->
+      <g transform="translate(337,520)">
+        <path d="M 0,-60 Q 17,-54 17,-22 Q 17,5 0,14 Q -17,5 -17,-22 Q -17,-54 0,-60" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <ellipse cx="0" cy="18" rx="20" ry="7" fill="#1a1028" stroke="#252038" stroke-width="1" />
+        <text x="0" y="38" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">대형 실리콘</text>
+      </g>
+      <!-- 금속 소 -->
+      <g transform="translate(452,525)">
+        <path d="M 0,-52 Q 12,-46 12,-20 Q 12,4 0,12 Q -12,4 -12,-20 Q -12,-46 0,-52" fill="url(#metal)"
+          stroke="#606070" stroke-width="1.2" />
+        <ellipse cx="0" cy="16" rx="16" ry="5.5" fill="url(#metal)" stroke="#606070" stroke-width="1" />
+        <text x="0" y="34" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">금속 소형</text>
+        <text x="0" y="44" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">냉온 겸용</text>
+      </g>
+      <!-- 금속 중 -->
+      <g transform="translate(567,520)">
+        <path d="M 0,-58 Q 15,-52 15,-22 Q 15,5 0,14 Q -15,5 -15,-22 Q -15,-52 0,-58" fill="url(#metal)"
+          stroke="#606070" stroke-width="1.2" />
+        <ellipse cx="0" cy="18" rx="19" ry="7" fill="url(#metal)" stroke="#606070" stroke-width="1" />
+        <text x="0" y="38" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">금속 중형</text>
+        <text x="0" y="48" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">냉온 겸용</text>
+      </g>
+      <!-- 팽창형 -->
+      <g transform="translate(682,525)">
+        <path d="M 0,-50 Q 12,-44 12,-18 Q 12,6 0,14 Q -12,6 -12,-18 Q -12,-44 0,-50" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <!-- pump bulb -->
+        <circle cx="18" cy="-10" r="10" fill="#1a1028" stroke="#252038" stroke-width="1" />
+        <line x1="12" y1="-5" x2="18" y2="-10" stroke="#252038" stroke-width="1" />
+        <text x="5" y="32" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">팽창형</text>
+      </g>
+      <!-- 진동형 플러그 -->
+      <g transform="translate(797,525)">
+        <path d="M 0,-50 Q 12,-44 12,-18 Q 12,6 0,14 Q -12,6 -12,-18 Q -12,-44 0,-50" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <circle cx="0" cy="-8" r="5" fill="#c8843a" opacity="0.3" stroke="#c8843a" stroke-width="0.8" />
+        <ellipse cx="0" cy="18" rx="15" ry="5.5" fill="#1a1028" stroke="#252038" stroke-width="1" />
+        <text x="0" y="36" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">진동형</text>
+        <text x="0" y="46" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">리모트 연동</text>
+      </g>
+      <!-- 롱형 -->
+      <g transform="translate(912,515)">
+        <path d="M 0,-68 Q 11,-62 11,-28 Q 11,6 0,18 Q -11,6 -11,-28 Q -11,-62 0,-68" fill="url(#silicone)"
+          stroke="#252035" stroke-width="1.2" />
+        <ellipse cx="0" cy="22" rx="15" ry="5.5" fill="#1a1028" stroke="#252038" stroke-width="1" />
+        <text x="0" y="42" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e0c060"
+          text-anchor="middle">롱형</text>
+        <text x="0" y="52" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#606070"
+          text-anchor="middle">길이 특화</text>
+      </g>
+
+      <!-- lining note -->
+      <text x="530" y="610" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#404050"
+        text-anchor="middle" letter-spacing="2">서랍 전 단 — 딥 버건디 벨벳 라이너 (차수혁의 색) · 칸막이 분리</text>
+    </svg>
+
+    <div class="grid">
+      <div class="card"><strong>서랍 1단 — 바이브레이터</strong><span>소형 무선 / 웨어러블 / 프로스테이트 / 바이브레이팅 링 / 완드 / 세척 키트</span>
+        <div class="tag">리모트 연동 · 실리콘</div>
+      </div>
+      <div class="card"><strong>서랍 2단 — 딜도</strong><span>글라스 소·대 (냉온) / 실리콘 리얼·곡선·흡착·이중자극·진동형 7종</span>
+        <div class="tag">유리 · 실리콘</div>
+      </div>
+      <div class="card"><strong>서랍 3단 — 플러그</strong><span>실리콘 소·중·대 / 금속 소·중 (냉온) / 팽창형 / 진동형 / 롱형 8종</span>
+        <div class="tag">실리콘 · 금속 · 벨벳 라이너</div>
+      </div>
+      <div class="card"><strong>공통 — 수납 원칙</strong><span>사용 후 세척·건조 완료 후 원위치. 카테고리별 칸막이 분리. 버건디 라이너는 차수혁의 색 — 이 공간의 주인을
+          상기시키는 장치.</span>
+        <div class="tag">딥 버건디 벨벳</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
