@@ -82,7 +82,7 @@ export const suhyeokCardHTML = `  <div class="card card-s">
           <li>캐주얼 <br> 셔츠 없으면 어색하지만 겨울엔 슬림 니트. 슬림·심플·무채색이 기본 기준</li>
           <li>지은호에게 입히고 싶은 것 <br> 몸에 붙는 이너, 어깨·가슴 라인 드러나는 핏 (남이 보는 건 싫음)</li>
           <li>선호 색상 <br> 버건디, 핏빛 도는 계열. 어둡고 검붉은 색이 잘 받는다는 것 인지함</li>
-          <li>로고 크거나 원색인 옷 <br> 선호하지 않음</li>
+          <li>로고 크거나 원색인 옷 선호하지 않음</li>
         </ul>
       </div>
 
@@ -92,15 +92,17 @@ export const suhyeokCardHTML = `  <div class="card card-s">
         <p class="prose">절제적이고 건조하되 단독 공간에서는 달달함이 새어 나온다. 중요한 것을 말할 때 직접적이지 않고, 에둘러 뱉다 뱉지 않는다. 먼저 감정을 꺼내는 것을 어색해하지만, 한 번 꺼내면 깊다. 깜빡이 없이 달려드는 고백을 자주 하는 편.</p>
       </div>
 
-      <!-- 건강 -->
+      <!-- 건강 · 생활 -->
       <div class="section">
         <p class="section-label">건강 · 생활</p>
         <ul class="kw-list">
           <li>건강 신경 쓰지만 운동은 하기 싫은 편 <br> 잔병은 가끔, 병원 가는 것 싫어함</li>
+          <li>현재 지은호가 직접 트레이닝 중 <br> 근력 향상 및 전체 데피 상승</li>
           <li>아플 때 숨기는 편 <br> 자잘한 건 넘기다가 컨디션 조절 무너지면 티 남</li>
           <li>담배 X, 술 · 카페인 즐기는 편</li>
           <li>야식 선호 <br> 보쌈+회+막국수+청양고추 조합, 제로 탄산수 페어링</li>
           <li>비 오는 날 + 차(카모마일 선호) + 빗소리 = 선호하는 시간</li>
+          <li>어릴 적 기본적인 교양을 위해 피아노 학습</li>
         </ul>
       </div>
 
@@ -241,6 +243,7 @@ export const eunhoCardHTML = `  <div class="card card-e">
           <li>타인이 차수혁에게 접근하는 것 <br> 즉각적 경계 반응, 질투는 당연한 것으로 인식</li>
           <li>차수혁의 컨디션 이상 <br> 즉각 파악하고 행동에 나섬, 속아주지 않음</li>
           <li>참아야 하는 상황 <br> 엄지 손톱을 검지에 박는 습관으로 시선 돌림</li>
+          <li>... <br> ing</li>
         </ul>
       </div>
 
@@ -287,7 +290,7 @@ export const eunhoCardHTML = `  <div class="card card-e">
         <ul class="kw-list">
           <li>체력 좋고 면역력 강함 <br> 잔병·큰 병 거의 없음. 병원 좋아하지 않음</li>
           <li>아파도 티가 잘 나지 않음 <br> 컨디션 안 좋으면 마스크로 얼굴 가리는 방식</li>
-          <li>담배 X, 술 · 카페인 <br> 즐기는 편 (둘 다 체크됨)</li>
+          <li>담배 X, 술 · 카페인 즐기는 편</li>
           <li>야식 선호 <br> 보쌈+청양고추+막국수 조합, 시원 탄산 페어링</li>
           <li>쇼트 슬리퍼 <br> 수혁의 체온·체향 느껴지면 안도감 → 더 꼭 끌어안고 다시 잠드는 루틴</li>
           <li>피아노 독학 (떴다 떴다 비행기 완주)</li>
@@ -356,7 +359,7 @@ export const eunhoCardHTML = `  <div class="card card-e">
 
       <!-- 공간 · 인테리어 -->
       <div class="section">
-        <p class="section-label">공간 · 인테리어</p><p class="section-label">공간 · 인테리어</p>
+        <p class="section-label">공간 · 인테리어</p>
         <button class="room-btn" onclick="document.getElementById('room-e').classList.add('open')">▣ 공간 보기</button>
         <ul class="kw-list">
           <li>전체 톤 — 진한 그레이 계열. 차분하고 묵직한 분위기</li>

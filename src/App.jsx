@@ -1,122 +1,108 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import './index.css'
+import { RoomButton } from './components/RoomPopup'
+import Anniversary from './components/Anniversary'
+import { suhyeokCardHTML, eunhoCardHTML, bannerHTML, vocabHTML } from './data/profileData'
 
-function App() {
-  const [count, setCount] = useState(0)
+// HTML 문자열에서 섹션별로 분리
+function parseSections(html) {
+  const results = []
+  const sectionRegex = /<div class="section">([\s\S]*?)<\/div>\s*(?=<div class="section">|<\/div>\s*<\/div>|$)/g
+  let match
+  while ((match = sectionRegex.exec(html)) !== null) {
+    results.push(match[0])
+  }
+  return results
+}
+
+function parseHead(html) {
+  const start = html.indexOf('<div class="card-head">')
+  const end = html.indexOf('</div>', start) + 6
+  // card-head는 내부에 여러 태그가 있으니 닫는 태그 정확히 찾기
+  let depth = 0
+  let i = start
+  while (i < html.length) {
+    if (html.slice(i, i + 4) === '<div') depth++
+    if (html.slice(i, i + 6) === '</div>') { depth--; if (depth === 0) { i += 6; break } }
+    i++
+  }
+  return html.slice(start, i)
+}
+
+export default function App() {
+  const sHead = parseHead(suhyeokCardHTML)
+  const eHead = parseHead(eunhoCardHTML)
+
+  // 공간 섹션 앞까지만 파싱 (공간은 RoomButton 포함이라 별도 처리)
+  const [sBefore] = suhyeokCardHTML.split('<!-- 공간 · 인테리어 -->')
+  const [eBefore] = eunhoCardHTML.split('<!-- 공간 · 인테리어 -->')
+  const sSections = parseSections(sBefore)
+  const eSections = parseSections(eBefore)
+
+  // 공간 섹션 ul 내용 추출
+  const sRoomList = extractUlContent(suhyeokCardHTML)
+  const eRoomList = extractUlContent(eunhoCardHTML)
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <header>
+        <p className="header-label">캐릭터 프로필 · Character Profiles</p>
+        <h1 className="header-title">차수혁 &amp; 지은호</h1>
+        <p className="header-sub">태건 그룹 × 개인 경호 · 연인 관계</p>
+        <div className="header-divider"></div>
+      </header>
 
-      <div className="ticks"></div>
+      {/* 핵심: 두 카드를 하나의 grid로 */}
+      <div className="profile-grid">
+        {/* 헤더 행 */}
+        <div className="card card-s pcard-head" dangerouslySetInnerHTML={{ __html: sHead }} />
+        <div className="card card-e pcard-head" dangerouslySetInnerHTML={{ __html: eHead }} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {/* 섹션 행들 */}
+        {sSections.map((s, i) => (
+          <>
+            <div key={`s-${i}`} className="card card-s psection"
+              dangerouslySetInnerHTML={{ __html: s }} />
+            <div key={`e-${i}`} className="card card-e psection"
+              dangerouslySetInnerHTML={{ __html: eSections[i] || '' }} />
+          </>
+        ))}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+        {/* 공간 섹션 행 */}
+        <div className="card card-s psection">
+          <div className="section">
+            <p className="section-label">공간 · 인테리어</p>
+            <RoomButton type="s" />
+            <ul className="kw-list" style={{ marginTop: '.75rem' }}
+              dangerouslySetInnerHTML={{ __html: sRoomList }} />
+          </div>
+        </div>
+        <div className="card card-e psection">
+          <div className="section">
+            <p className="section-label">공간 · 인테리어</p>
+            <RoomButton type="e" />
+            <ul className="kw-list" style={{ marginTop: '.75rem' }}
+              dangerouslySetInnerHTML={{ __html: eRoomList }} />
+          </div>
+        </div>
+      </div>
+
+      <div dangerouslySetInnerHTML={{ __html: bannerHTML }} />
+      <VocabSection />
+      <Anniversary />
     </>
   )
 }
 
-export default App
+function extractUlContent(html) {
+  const roomIdx = html.indexOf('<!-- 공간 · 인테리어 -->')
+  if (roomIdx === -1) return ''
+  const ulStart = html.indexOf('<li', roomIdx)
+  const ulEnd = html.indexOf('</ul>', roomIdx) 
+  return html.slice(ulStart, ulEnd)
+}
+
+function VocabSection() {
+  const cutIdx = vocabHTML.indexOf('<!-- ── 커플 기념일 ── -->')
+  const cleanVocab = cutIdx !== -1 ? vocabHTML.slice(0, cutIdx) : vocabHTML
+  return <div dangerouslySetInnerHTML={{ __html: cleanVocab }} />
+}
