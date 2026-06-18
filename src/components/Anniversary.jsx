@@ -13,25 +13,42 @@ function getList() {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const list = [];
 
+  const years = [];
   for (let y = 1; y <= 5; y++) {
     const d = new Date(START);
     d.setFullYear(d.getFullYear() + y);
-    list.push({ label: y + '주년', date: d, type: 'year' });
+    years.push({ label: y + '주년', date: d, type: 'year' });
   }
+  list.push(...years);
 
-  let addedFuture = 0;
-  for (let n = 100; n <= 5000; n += 100) {
-    const d = new Date(START.getTime() + (n - 1) * 86400000);
-    const diff = diffDays(today, d);
-    if (diff <= 0) {
-      list.push({ label: n + '일', date: d, type: 'day' });
-    } else if (diff <= 30) {
-      list.push({ label: n + '일', date: d, type: 'day' });
-    } else if (addedFuture === 0) {
-      list.push({ label: n + '일', date: d, type: 'day' });
-      addedFuture++;
-    }
-  }
+  // 1주년 이전 — 50일 단위 / 1주년 이후 — 100일 단위
+  const oneYearDay = diffDays(START, years[0].date); // ≈365
+  const dayNums = [];
+  for (let n = 50; n < oneYearDay; n += 50) dayNums.push(n);
+  for (let n = 400; n <= 5000; n += 100) dayNums.push(n);
+
+  const dayEntries = dayNums
+    .map(n => ({ n, date: new Date(START.getTime() + (n - 1) * 86400000) }))
+    // 주년 기념일과 한 달(31일) 이내로 겹치는 항목은 제외 — 가까운 두 기념일이 중복 표시되지 않도록
+    .filter(({ date }) => !years.some(y => Math.abs(diffDays(date, y.date)) <= 31));
+
+  // 지나온 기념일은 전부 표시
+  dayEntries
+    .filter(e => diffDays(today, e.date) <= 0)
+    .forEach(e => list.push({ label: e.n + '일', date: e.date, type: 'day' }));
+
+  // 다음으로 다가올 N주년 — 그 이전에 오는 날짜 단위 기념일 중 가장 가까운 것 하나만 "다음 기념일"로 표시
+  // (해당 날짜 단위 기념일이 없으면 다음 N주년 자체가 다음 기념일이 된다)
+  const nextYearDate = years
+    .map(y => y.date)
+    .filter(d => diffDays(today, d) > 0)
+    .sort((a, b) => a - b)[0]
+    || new Date(today.getTime() + 3650 * 86400000);
+
+  const nextDay = dayEntries
+    .filter(e => diffDays(today, e.date) > 0 && e.date < nextYearDate)
+    .sort((a, b) => a.date - b.date)[0];
+  if (nextDay) list.push({ label: nextDay.n + '일', date: nextDay.date, type: 'day' });
 
   list.sort((a, b) => a.date - b.date);
   return list;
@@ -66,8 +83,13 @@ export default function Anniversary() {
     arrow.style.cssText = `position:absolute;right:24px;top:${LINE_Y - 5}px;width:0;height:0;border-left:10px solid #3a5f8a;border-top:6px solid transparent;border-bottom:6px solid transparent;`;
     wrap.appendChild(arrow);
 
+    const positions = list.map((item, i) => ({
+      x: 30 + i * ITEM_W + ITEM_W / 2,
+      date: item.date
+    }));
+
     list.forEach((item, i) => {
-      const x = 30 + i * ITEM_W + ITEM_W / 2;
+      const x = positions[i].x;
       const diff = diffDays(today, item.date);
       const isPast = diff < 0;
       const isToday = diff === 0;
@@ -157,6 +179,62 @@ export default function Anniversary() {
 
       wrap.appendChild(txt);
     });
+
+    // 오늘 위치 하트 마커 — 목록의 기념일과 정확히 겹치지 않으면
+    // 앞뒤 기념일 사이를 날짜 비율로 보간한 위치에 표시
+    const exactToday = list.some(item => diffDays(today, item.date) === 0);
+    if (!exactToday && positions.length) {
+      let prev = null, next = null;
+      for (const p of positions) {
+        if (p.date <= today) prev = p;
+        else { next = p; break; }
+      }
+
+      let todayX;
+      if (prev && next) {
+        const ratio = (today - prev.date) / (next.date - prev.date);
+        todayX = prev.x + ratio * (next.x - prev.x);
+      } else if (prev) {
+        todayX = Math.min(prev.x + ITEM_W * 0.6, TOTAL_W - 36);
+      } else {
+        todayX = Math.max(next.x - ITEM_W * 0.6, 36);
+      }
+
+      const glow = document.createElement('div');
+      glow.style.cssText = `position:absolute;left:${todayX - 14}px;top:${LINE_Y - 14}px;width:28px;height:28px;border-radius:50%;background:rgba(181,45,62,.22);z-index:1;`;
+      wrap.appendChild(glow);
+
+      const heart = document.createElement('div');
+      heart.style.cssText = [
+        'position:absolute',
+        `left:${todayX}px`,
+        `top:${LINE_Y - 9}px`,
+        'transform:translateX(-50%)',
+        'font-size:17px',
+        'color:#b52d3e',
+        'line-height:1',
+        'animation:pulse 1.8s ease-in-out infinite',
+        'z-index:3'
+      ].join(';');
+      heart.textContent = '♡';
+      wrap.appendChild(heart);
+
+      const todayLabel = document.createElement('div');
+      todayLabel.style.cssText = [
+        'position:absolute',
+        `left:${todayX}px`,
+        `top:${LINE_Y + 12}px`,
+        'transform:translateX(-50%)',
+        'font-size:.6rem',
+        'color:#b52d3e',
+        'font-weight:700',
+        'letter-spacing:.05em',
+        'white-space:nowrap',
+        'z-index:3'
+      ].join(';');
+      todayLabel.textContent = '오늘';
+      wrap.appendChild(todayLabel);
+    }
   }, []);
 
   return (

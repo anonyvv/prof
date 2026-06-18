@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>차수혁 빌라 — 평면도</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+    :root {
+      --black: #0a0a0c;
+      --char: #111116;
+      --wine: #6b1525;
+      --amber: #c8843a;
+      --gold: #e0c060;
+      --silver: #9090a8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 60px;
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    h1 {
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .sub {
+      font-size: .7rem;
+      color: var(--silver);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .div {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--wine), transparent);
+      margin: 10px auto 24px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .view-block {
+      width: 100%;
+      max-width: 1060px;
+      display: block;
+    }
+
+    /* 탭 */
+    .tabs {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(107, 21, 37, .3);
+      padding-bottom: .6rem;
+      width: 100%;
+      max-width: 1060px;
+    }
+
+    .tab-btn {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      padding: .3rem .9rem;
+      border-radius: 1px;
+      cursor: pointer;
+      background: transparent;
+      transition: all .2s;
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    .tab-btn.active {
+      background: #6b1525;
+      color: #f5dde0;
+      border: 1px solid #6b1525;
+    }
+
+    .tab-btn:not(.active) {
+      color: #6b1525;
+      border: 1px solid rgba(107, 21, 37, .4);
+    }
+
+    .tab-panel {
+      display: none;
+      width: 100%;
+      max-width: 1060px;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .section-label {
+      width: 100%;
+      max-width: 1060px;
+      font-size: .72rem;
+      color: var(--silver);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      padding: 8px 0 12px;
+      border-bottom: 1px solid rgba(107, 21, 37, .3);
+      margin-bottom: 20px;
+      margin-top: 36px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      width: 100%;
+      max-width: 1060px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--char);
+      border: 1px solid rgba(107, 21, 37, .22);
+      padding: 10px 14px;
+      transition: border-color .3s;
+    }
+
+    .card:hover {
+      border-color: var(--wine);
+    }
+
+    .card strong {
+      display: block;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .card span {
+      font-size: .66rem;
+      color: var(--silver);
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .58rem;
+      background: rgba(107, 21, 37, .2);
+      color: var(--amber);
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* 트랙 (배경) */
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* 썸 (핸들) */
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>차수혁의 저택</h1>
+  <p class="sub">Cha Suhyeok · Villa · Floor Plan</p>
+  <div class="div"></div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('2f', this)">2F — 사적 영역</button>
+    <button class="tab-btn" onclick="switchTab('1f', this)">1F — 공용 영역</button>
+  </div>
+
+  <!-- ══════════ 2F ══════════ -->
+  <div class="tab-panel active" id="tab-2f">
+    <div class="view-block">
+      <svg viewBox="0 0 980 720" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gF2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#160810" />
+            <stop offset="100%" stop-color="#0e0508" />
+          </linearGradient>
+          <linearGradient id="gW2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a0a14" />
+            <stop offset="100%" stop-color="#100608" />
+          </linearGradient>
+          <linearGradient id="gWolf2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#280510" />
+            <stop offset="100%" stop-color="#140208" />
+          </linearGradient>
+          <radialGradient id="gWG2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#b52d3e" stop-opacity=".18" />
+            <stop offset="100%" stop-color="#b52d3e" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <!-- 외벽 -->
+        <rect x="60" y="30" width="860" height="640" fill="none" stroke="#6b1525" stroke-width="14" rx="2" />
+        <rect x="67" y="37" width="846" height="626" fill="url(#gF2)" />
+        <!-- 그리드 -->
+        <g stroke="#1e0c14" stroke-width="0.4" opacity="0.4">
+          <line x1="67" y1="87" x2="913" y2="87" />
+          <line x1="67" y1="137" x2="913" y2="137" />
+          <line x1="67" y1="187" x2="913" y2="187" />
+          <line x1="67" y1="237" x2="913" y2="237" />
+          <line x1="67" y1="287" x2="913" y2="287" />
+          <line x1="67" y1="337" x2="913" y2="337" />
+          <line x1="67" y1="387" x2="913" y2="387" />
+          <line x1="67" y1="437" x2="913" y2="437" />
+          <line x1="67" y1="487" x2="913" y2="487" />
+          <line x1="67" y1="537" x2="913" y2="537" />
+          <line x1="67" y1="587" x2="913" y2="587" />
+          <line x1="67" y1="637" x2="913" y2="637" />
+          <line x1="117" y1="37" x2="117" y2="663" />
+          <line x1="167" y1="37" x2="167" y2="663" />
+          <line x1="217" y1="37" x2="217" y2="663" />
+          <line x1="267" y1="37" x2="267" y2="663" />
+          <line x1="317" y1="37" x2="317" y2="663" />
+          <line x1="367" y1="37" x2="367" y2="663" />
+          <line x1="417" y1="37" x2="417" y2="663" />
+          <line x1="467" y1="37" x2="467" y2="663" />
+          <line x1="517" y1="37" x2="517" y2="663" />
+          <line x1="567" y1="37" x2="567" y2="663" />
+          <line x1="617" y1="37" x2="617" y2="663" />
+          <line x1="667" y1="37" x2="667" y2="663" />
+          <line x1="717" y1="37" x2="717" y2="663" />
+          <line x1="767" y1="37" x2="767" y2="663" />
+          <line x1="817" y1="37" x2="817" y2="663" />
+          <line x1="867" y1="37" x2="867" y2="663" />
+        </g>
+
+        <!-- 복도 -->
+        <rect x="67" y="37" width="846" height="50" fill="#0e0810" stroke="#3a1020" stroke-width="1.5" />
+        <text x="490" y="68" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" fill="#9a4858"
+          text-anchor="middle" letter-spacing="6">복 도</text>
+        <!-- 복도 → 침실 입구 안내 -->
+        <line x1="200" y1="62" x2="200" y2="84" stroke="#9a4858" stroke-width="1" stroke-dasharray="3,2" opacity="0.7" />
+        <text x="200" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c8843a"
+          text-anchor="middle">▼ 침실 입구</text>
+        <!-- 복도 → 늑대굴 입구 안내 -->
+        <line x1="845" y1="62" x2="845" y2="84" stroke="#9a4858" stroke-width="1" stroke-dasharray="3,2" opacity="0.7" />
+        <text x="845" y="56" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c8843a"
+          text-anchor="middle">▼ 늑대굴 입구</text>
+
+        <!-- 내벽: 침실↔욕실 -->
+        <rect x="344" y="87" width="9" height="340" fill="#0e0810" />
+        <!-- 내벽: 욕실↔드레스룸 -->
+        <rect x="353" y="287" width="420" height="8" fill="#0e0810" />
+        <!-- 내벽: 수혁↔은호 드레스룸 -->
+        <rect x="574" y="287" width="8" height="140" fill="#1a1428" stroke="#3a2848" stroke-width="1" />
+        <!-- 내벽: 침실↔늑대굴 -->
+        <rect x="764" y="87" width="9" height="576" fill="#0e0810" />
+
+        <!-- ═══ 침실 ═══ -->
+        <rect x="67" y="87" width="277" height="340" fill="url(#gW2)" />
+        <rect x="67" y="87" width="277" height="9" fill="#0c0608" stroke="#3a1020" stroke-width="1" />
+        <text x="205" y="96" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#c2707f"
+          text-anchor="middle">암막 이중 커튼 · 통창</text>
+        <!-- 침대 -->
+        <rect x="84" y="108" width="172" height="198" fill="#1e0810" stroke="#6b1525" stroke-width="2" rx="3" />
+        <rect x="84" y="108" width="172" height="28" fill="#2a0c16" stroke="#4a1020" stroke-width="1.5" rx="2" />
+        <circle cx="120" cy="122" r="7" fill="none" stroke="#b52d3e" stroke-width="2" />
+        <circle cx="171" cy="122" r="7" fill="none" stroke="#b52d3e" stroke-width="2" />
+        <circle cx="222" cy="122" r="7" fill="none" stroke="#b52d3e" stroke-width="2" />
+        <rect x="94" y="144" width="68" height="34" fill="#280a14" stroke="#3a1018" stroke-width="1" rx="3" />
+        <text x="128" y="165" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#d2879a"
+          text-anchor="middle">수혁</text>
+        <rect x="177" y="144" width="68" height="34" fill="#1e0810" stroke="#2a3a50" stroke-width="1" rx="3" />
+        <text x="211" y="165" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#8294b8"
+          text-anchor="middle">은호</text>
+        <rect x="267" y="122" width="52" height="50" fill="#180810" stroke="#4a1828" stroke-width="1" rx="2" />
+        <text x="293" y="151" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c2707f"
+          text-anchor="middle">협탁</text>
+        <text x="196" y="360" font-family="Inter,'Noto Sans KR',sans-serif" font-size="16" font-weight="500"
+          fill="#c8843a" text-anchor="middle">침 실</text>
+        <text x="196" y="378" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#b69e8c"
+          text-anchor="middle">킹 사이즈 · 암막 이중</text>
+        <text x="196" y="394" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">수혁 왼(벽) · 은호 오른(문)</text>
+        <line x1="67" y1="408" x2="240" y2="408" stroke="#3a1020" stroke-width="2" stroke-dasharray="5,3" />
+        <text x="154" y="400" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c2707f"
+          text-anchor="middle">루프 테라스 ↑</text>
+        <!-- 복도→침실 출입문 (상단 벽) -->
+        <line x1="170" y1="87" x2="230" y2="87" stroke="#150810" stroke-width="6" />
+        <path d="M 170 87 Q 170 117 200 117" fill="none" stroke="#6b1525" stroke-width="2" stroke-dasharray="4,2" />
+        <!-- 침실→욕실 문 -->
+        <line x1="344" y1="190" x2="344" y2="245" stroke="#0e0810" stroke-width="10" />
+        <path d="M 344 190 Q 392 190 392 238" fill="none" stroke="#6b1525" stroke-width="2" stroke-dasharray="4,2" />
+
+        <!-- ═══ 욕실 (2F 전체 너비로 확장 — 넓게 트인 구조) ═══ -->
+        <rect x="353" y="87" width="420" height="200" fill="url(#gW2)" />
+        <!-- 욕조 (프리스탠딩) -->
+        <rect x="372" y="108" width="148" height="62" rx="28" fill="#180810" stroke="#4a1828" stroke-width="1.5" />
+        <ellipse cx="446" cy="139" rx="62" ry="20" fill="none" stroke="#3a1020" stroke-width="1"
+          stroke-dasharray="3,2" />
+        <text x="446" y="143" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10.5" fill="#c87888"
+          text-anchor="middle">욕조 (프리스탠딩)</text>
+        <!-- 샤워 (워크인) -->
+        <rect x="540" y="98" width="120" height="120" rx="4" fill="#140608" stroke="#3a1020" stroke-width="1.5" />
+        <circle cx="600" cy="158" r="38" fill="none" stroke="#3a1020" stroke-width="1.2" stroke-dasharray="3,2" />
+        <circle cx="600" cy="158" r="6" fill="#3a1020" />
+        <text x="600" y="163" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10.5" fill="#c87888"
+          text-anchor="middle">샤워 (워크인)</text>
+        <!-- 더블 세면대 -->
+        <rect x="678" y="110" width="85" height="50" rx="3" fill="#160810" stroke="#3a1020" stroke-width="1.2" />
+        <ellipse cx="700" cy="132" rx="14" ry="9" fill="none" stroke="#3a1020" stroke-width="1" />
+        <ellipse cx="741" cy="132" rx="14" ry="9" fill="none" stroke="#3a1020" stroke-width="1" />
+        <text x="720" y="174" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9.5" fill="#c87888"
+          text-anchor="middle">더블 세면대</text>
+        <text x="563" y="252" font-family="Inter,'Noto Sans KR',sans-serif" font-size="15" font-weight="400"
+          fill="#c8843a" text-anchor="middle">욕 실</text>
+        <text x="563" y="270" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#a88878"
+          text-anchor="middle">넓게 트인 구조 · 욕조+워크인 샤워+더블 세면대 · 스틸 피팅</text>
+        <!-- 욕실→드레스룸 문 -->
+        <line x1="395" y1="287" x2="470" y2="287" stroke="#0e0810" stroke-width="10" />
+        <path d="M 395 287 Q 395 330 438 330" fill="none" stroke="#6b1525" stroke-width="2" stroke-dasharray="4,2" />
+
+        <!-- ═══ 드레스룸 수혁 ═══ -->
+        <rect x="353" y="295" width="221" height="132" fill="url(#gW2)" />
+        <line x1="366" y1="328" x2="556" y2="328" stroke="#4a1020" stroke-width="3" stroke-linecap="round" />
+        <line x1="366" y1="348" x2="556" y2="348" stroke="#4a1020" stroke-width="3" stroke-linecap="round" />
+        <rect x="369" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="379" y="329" width="8" height="18" rx="1" fill="#6b1525" />
+        <rect x="389" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="399" y="329" width="8" height="18" rx="1" fill="#0a0a18" />
+        <rect x="409" y="329" width="8" height="18" rx="1" fill="#6b1525" />
+        <rect x="419" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="429" y="329" width="8" height="18" rx="1" fill="#1a1818" />
+        <rect x="439" y="329" width="8" height="18" rx="1" fill="#6b1525" />
+        <rect x="449" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="459" y="329" width="8" height="18" rx="1" fill="#0a0a18" />
+        <rect x="469" y="329" width="8" height="18" rx="1" fill="#6b1525" />
+        <rect x="479" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="489" y="329" width="8" height="18" rx="1" fill="#1a1818" />
+        <rect x="499" y="329" width="8" height="18" rx="1" fill="#6b1525" />
+        <rect x="509" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="519" y="329" width="8" height="18" rx="1" fill="#6b1525" />
+        <rect x="529" y="329" width="8" height="18" rx="1" fill="#111" />
+        <rect x="539" y="329" width="8" height="18" rx="1" fill="#0a0a18" />
+        <rect x="541" y="302" width="10" height="118" fill="#030306" stroke="#b52d3e" stroke-width="2" />
+        <text x="546" y="362" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e85a72"
+          text-anchor="middle" transform="rotate(90,546,362)">전신 거울</text>
+        <rect x="368" y="368" width="88" height="40" fill="#180810" stroke="#3a1020" stroke-width="1.2" rx="2" />
+        <text x="412" y="392" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">시계·커프스</text>
+        <text x="462" y="418" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="500"
+          fill="#c8843a" text-anchor="middle">드레스룸 — 수혁</text>
+        <text x="462" y="432" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">모노크롬 · 블랙·차콜·화이트·네이비</text>
+        <!-- 수혁→은호 문 -->
+        <line x1="574" y1="312" x2="574" y2="375" stroke="#0e0810" stroke-width="10" />
+        <path d="M 574 312 Q 620 312 620 358" fill="none" stroke="#8060a0" stroke-width="2" stroke-dasharray="4,2" />
+
+        <!-- ═══ 드레스룸 은호 ═══ -->
+        <rect x="582" y="295" width="182" height="132" fill="#0c0e1a" />
+        <rect x="582" y="295" width="182" height="132" fill="none" stroke="#2a3858" stroke-width="2"
+          stroke-dasharray="6,2" />
+        <line x1="596" y1="328" x2="746" y2="328" stroke="#2a3858" stroke-width="3" stroke-linecap="round" />
+        <line x1="596" y1="348" x2="746" y2="348" stroke="#2a3858" stroke-width="3" stroke-linecap="round" />
+        <rect x="599" y="329" width="8" height="18" rx="1" fill="#1a1a22" />
+        <rect x="609" y="329" width="8" height="18" rx="1" fill="#222228" />
+        <rect x="619" y="329" width="8" height="18" rx="1" fill="#1a1822" />
+        <rect x="629" y="329" width="8" height="18" rx="1" fill="#202028" />
+        <rect x="639" y="329" width="8" height="18" rx="1" fill="#181820" />
+        <rect x="649" y="329" width="8" height="18" rx="1" fill="#222228" />
+        <rect x="659" y="329" width="8" height="18" rx="1" fill="#1a1a22" />
+        <rect x="669" y="329" width="8" height="18" rx="1" fill="#202028" />
+        <rect x="679" y="329" width="8" height="18" rx="1" fill="#181820" />
+        <rect x="689" y="329" width="8" height="18" rx="1" fill="#1a1822" />
+        <rect x="699" y="329" width="8" height="18" rx="1" fill="#222228" />
+        <rect x="709" y="329" width="8" height="18" rx="1" fill="#1a1a22" />
+        <line x1="748" y1="302" x2="748" y2="420" stroke="#3a3a5a" stroke-width="1.5" stroke-dasharray="3,4" />
+        <text x="752" y="365" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#8294b8"
+          text-anchor="start" transform="rotate(90,752,365)">거울 없음</text>
+        <text x="662" y="395" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="400"
+          fill="#6080a8" text-anchor="middle">드레스룸 — 은호</text>
+        <text x="662" y="410" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#8294b8"
+          text-anchor="middle">거울 없음 · 수혁 취향 + 은호 혼재</text>
+
+        <!-- 드레스룸 은호 → 늑대굴 직통 문 (복도 거치지 않는 사적 루트: 침실→욕실→드레스룸→늑대굴) -->
+        <line x1="764" y1="350" x2="764" y2="400" stroke="#150810" stroke-width="6" />
+        <path d="M 764 350 Q 794 350 794 380" fill="none" stroke="#6b1525" stroke-width="2" stroke-dasharray="4,2" />
+        <text x="769" y="345" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#d9788a"
+          text-anchor="start">▶ 늑대굴 직통</text>
+
+        <!-- ═══ 늑대굴 ═══ -->
+        <rect x="773" y="87" width="140" height="576" fill="url(#gWolf2)" />
+        <ellipse cx="843" cy="375" rx="76" ry="270" fill="url(#gWG2)" />
+        <rect x="773" y="87" width="9" height="576" fill="rgba(6,6,16,.95)" stroke="#2a2a3a" stroke-width="1" />
+        <rect x="904" y="87" width="9" height="576" fill="rgba(28,4,12,.95)" stroke="#5a1020" stroke-width="1" />
+        <rect x="789" y="138" width="106" height="128" fill="rgba(40,6,16,.8)" stroke="#6b1525" stroke-width="1.5"
+          rx="2" />
+        <rect x="789" y="138" width="106" height="22" fill="rgba(55,8,22,.8)" stroke="#4a1020" stroke-width="1"
+          rx="1" />
+        <circle cx="812" cy="149" r="6" fill="none" stroke="#b52d3e" stroke-width="1.8" />
+        <circle cx="842" cy="149" r="6" fill="none" stroke="#b52d3e" stroke-width="1.8" />
+        <circle cx="872" cy="149" r="6" fill="none" stroke="#b52d3e" stroke-width="1.8" />
+        <rect x="789" y="298" width="54" height="54" fill="rgba(35,5,14,.85)" stroke="#5a1020" stroke-width="1.5"
+          rx="2" />
+        <rect x="789" y="488" width="54" height="158" fill="#0e0810" stroke="#3a1020" stroke-width="1.5" />
+        <!-- 복도→늑대굴 출입문 (상단 벽) -->
+        <line x1="815" y1="87" x2="875" y2="87" stroke="#150810" stroke-width="6" />
+        <path d="M 815 87 Q 815 117 845 117" fill="none" stroke="#6b1525" stroke-width="2" stroke-dasharray="4,2" />
+        <text x="843" y="408" font-family="Inter,'Noto Sans KR',sans-serif" font-size="17" font-weight="500"
+          fill="#b52d3e" text-anchor="middle">늑대굴</text>
+        <text x="843" y="428" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#d9788a"
+          text-anchor="middle">번호+지문 이중 잠금</text>
+        <text x="843" y="444" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#d9788a"
+          text-anchor="middle">완전 방음 · 창문 없음</text>
+        <text x="843" y="460" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c2707f"
+          text-anchor="middle">수혁 단독 열쇠권</text>
+        <rect x="800" y="474" width="86" height="18" fill="rgba(107,21,37,.25)" stroke="#6b1525" stroke-width="1"
+          rx="1" />
+        <text x="843" y="487" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#e04050"
+          text-anchor="middle">▶ 늑대굴 탭</text>
+
+        <!-- 하단 -->
+        <rect x="420" y="663" width="140" height="8" fill="#0a0a0c" />
+        <line x1="420" y1="663" x2="420" y2="670" stroke="#6b1525" stroke-width="3" />
+        <line x1="560" y1="663" x2="560" y2="670" stroke="#6b1525" stroke-width="3" />
+        <path d="M 420 663 Q 490 638 560 663" fill="rgba(107,21,37,.08)" stroke="#6b1525" stroke-width="1.5"
+          stroke-dasharray="4,2" />
+        <text x="490" y="694" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#c2707f"
+          text-anchor="middle">계단 → 1F</text>
+
+        <!-- N -->
+        <text x="946" y="50" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="bold"
+          fill="#b52d3e">N</text>
+        <line x1="946" y1="56" x2="946" y2="74" stroke="#b52d3e" stroke-width="2" />
+        <polygon points="940,74 946,88 952,74" fill="#b52d3e" />
+      </svg>
+    </div>
+
+    <div class="section-label">공간 구성</div>
+    <div class="grid">
+      <div class="card"><strong>침실</strong><span>킹 사이즈. 블랙 패브릭 헤드보드. 암막 이중 커튼. 장식 일체 없음.</span>
+        <div class="tag">수혁 왼(벽) · 은호 오른(문)</div>
+      </div>
+      <div class="card"><strong>욕실 — 침실 직결</strong><span>2F 전체 너비로 넓게 트인 구조. 프리스탠딩 욕조 + 워크인 샤워 + 더블 세면대.</span>
+        <div class="tag">스틸 · 타일 · 와이드</div>
+      </div>
+      <div class="card"><strong>드레스룸 수혁</strong><span>모노크롬 수트 전용. 블랙·차콜·화이트·네이비. 전신 거울. 오픈 행거.</span>
+        <div class="tag">색순·소재순 정렬</div>
+      </div>
+      <div class="card"><strong>드레스룸 은호</strong><span>수혁이 고른 슬림핏·뉴트럴 + 은호가 채운 것 혼재. 거울 없음.</span>
+        <div class="tag">거울 없음</div>
+      </div>
+      <div class="card"><strong>늑대굴 — 복도 끝</strong><span>집 내부 연결. 외부 출입 없음. 번호+지문 이중 잠금. 완전 방음. 침실 → 욕실 → 드레스룸을 거치면 복도 없이 바로 이어지는 사적 루트도 있음.</span>
+        <div class="tag">▶ 늑대굴 탭</div>
+      </div>
+      <div class="card"><strong>루프 테라스</strong><span>침실 내부 계단 연결. 다크 우드 데크. 은호의 화분 1개. 아무 말 없이 서는 곳.</span>
+        <div class="tag">유일한 목재 바닥</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 1F ══════════ -->
+  <div class="tab-panel" id="tab-1f">
+    <div class="view-block">
+      <svg viewBox="0 0 980 640" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gF1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#160810" />
+            <stop offset="100%" stop-color="#0e0508" />
+          </linearGradient>
+          <linearGradient id="gR1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a0a14" />
+            <stop offset="100%" stop-color="#100608" />
+          </linearGradient>
+        </defs>
+        <!-- 외벽 -->
+        <rect x="60" y="30" width="860" height="560" fill="none" stroke="#6b1525" stroke-width="14" rx="2" />
+        <rect x="67" y="37" width="846" height="546" fill="url(#gF1)" />
+        <!-- 그리드 -->
+        <g stroke="#1e0c14" stroke-width="0.4" opacity="0.4">
+          <line x1="67" y1="87" x2="913" y2="87" />
+          <line x1="67" y1="137" x2="913" y2="137" />
+          <line x1="67" y1="187" x2="913" y2="187" />
+          <line x1="67" y1="237" x2="913" y2="237" />
+          <line x1="67" y1="287" x2="913" y2="287" />
+          <line x1="67" y1="337" x2="913" y2="337" />
+          <line x1="67" y1="387" x2="913" y2="387" />
+          <line x1="67" y1="437" x2="913" y2="437" />
+          <line x1="67" y1="487" x2="913" y2="487" />
+          <line x1="67" y1="537" x2="913" y2="537" />
+          <line x1="117" y1="37" x2="117" y2="583" />
+          <line x1="167" y1="37" x2="167" y2="583" />
+          <line x1="217" y1="37" x2="217" y2="583" />
+          <line x1="267" y1="37" x2="267" y2="583" />
+          <line x1="317" y1="37" x2="317" y2="583" />
+          <line x1="367" y1="37" x2="367" y2="583" />
+          <line x1="417" y1="37" x2="417" y2="583" />
+          <line x1="467" y1="37" x2="467" y2="583" />
+          <line x1="517" y1="37" x2="517" y2="583" />
+          <line x1="567" y1="37" x2="567" y2="583" />
+          <line x1="617" y1="37" x2="617" y2="583" />
+          <line x1="667" y1="37" x2="667" y2="583" />
+          <line x1="717" y1="37" x2="717" y2="583" />
+          <line x1="767" y1="37" x2="767" y2="583" />
+          <line x1="817" y1="37" x2="817" y2="583" />
+          <line x1="867" y1="37" x2="867" y2="583" />
+        </g>
+
+        <!-- 계단 (2F 연결, 상단) -->
+        <rect x="67" y="37" width="140" height="50" fill="#0e0810" stroke="#3a1020" stroke-width="1.5" />
+        <line x1="80" y1="37" x2="80" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <line x1="97" y1="37" x2="97" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <line x1="114" y1="37" x2="114" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <line x1="131" y1="37" x2="131" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <line x1="148" y1="37" x2="148" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <line x1="165" y1="37" x2="165" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <line x1="182" y1="37" x2="182" y2="87" stroke="#3a1020" stroke-width=".8" />
+        <text x="137" y="66" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#d9788a"
+          text-anchor="middle">계단 ↑ 2F</text>
+
+        <!-- 내벽들 -->
+        <rect x="207" y="37" width="8" height="546" fill="#0e0810" stroke="#3a1020" stroke-width="1" />
+        <rect x="615" y="37" width="8" height="380" fill="#0e0810" stroke="#3a1020" stroke-width="1" />
+        <rect x="207" y="417" width="414" height="8" fill="#0e0810" stroke="#3a1020" stroke-width="1" />
+        <rect x="615" y="280" width="298" height="8" fill="#0e0810" stroke="#3a1020" stroke-width="1" />
+
+        <!-- ═══ 거실 ═══ -->
+        <rect x="215" y="37" width="400" height="380" fill="url(#gR1)" />
+        <!-- 통유리 (상단) -->
+        <rect x="215" y="37" width="400" height="9" fill="rgba(181,45,62,.15)" stroke="#6b1525" stroke-width="1" />
+        <text x="415" y="48" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#d9788a"
+          text-anchor="middle">통유리 창 전면</text>
+        <!-- 소파 -->
+        <rect x="248" y="200" width="240" height="105" fill="#1e0810" stroke="#6b1525" stroke-width="2" rx="4" />
+        <rect x="248" y="200" width="240" height="26" fill="#280c18" stroke="#4a1020" stroke-width="1.2" rx="3" />
+        <rect x="256" y="234" width="52" height="60" fill="#1a0810" stroke="#3a1020" stroke-width="1" rx="3" />
+        <rect x="314" y="234" width="52" height="60" fill="#1a0810" stroke="#3a1020" stroke-width="1" rx="3" />
+        <rect x="372" y="234" width="52" height="60" fill="#1a0810" stroke="#3a1020" stroke-width="1" rx="3" />
+        <rect x="430" y="234" width="48" height="60" fill="#160810" stroke="#2a0e18" stroke-width="1" rx="3" />
+        <!-- 테이블 -->
+        <rect x="300" y="160" width="130" height="32" fill="#180810" stroke="#3a1020" stroke-width="1.2" rx="2" />
+        <text x="365" y="180" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c2707f"
+          text-anchor="middle">테이블 (최소)</text>
+        <!-- 라벨 -->
+        <text x="415" y="370" font-family="Inter,'Noto Sans KR',sans-serif" font-size="18" font-weight="500"
+          fill="#c8843a" text-anchor="middle">거 실</text>
+        <text x="415" y="392" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#b69e8c"
+          text-anchor="middle">창 면 전체 통유리 · 소파·테이블 최소</text>
+        <text x="415" y="408" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">수혁이 넥타이 먼저 푸는 공간</text>
+        <!-- 거실 출입문 -->
+        <line x1="215" y1="340" x2="215" y2="390" stroke="#0e0810" stroke-width="10" />
+        <path d="M 225 340 Q 225 365 265 365" fill="none" stroke="#6b1525" stroke-width="2" stroke-dasharray="4,2" />
+
+        <!-- ═══ 사용인실·유틸 (좌) ═══ -->
+        <rect x="67" y="87" width="140" height="496" fill="url(#gR1)" />
+        <text x="137" y="330" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="400"
+          fill="#c8843a" text-anchor="middle" transform="rotate(-90,137,330)">사용인실 · 유틸리티</text>
+        <text x="137" y="380" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#b69e8c"
+          text-anchor="middle" transform="rotate(-90,137,380)">청소·세탁·식재료 / 상주 아님</text>
+
+        <!-- ═══ 주방 (우상) ═══ -->
+        <rect x="623" y="37" width="290" height="243" fill="url(#gR1)" />
+        <!-- 아일랜드 -->
+        <rect x="655" y="130" width="220" height="60" fill="#1e0810" stroke="#6b1525" stroke-width="2" rx="2" />
+        <text x="765" y="165" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#c8843a"
+          text-anchor="middle">블랙 대리석 아일랜드</text>
+        <text x="765" y="181" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#b69e8c"
+          text-anchor="middle">수혁은 거의 사용 안 함</text>
+        <!-- 싱크 -->
+        <rect x="648" y="46" width="88" height="52" fill="#180810" stroke="#4a1020" stroke-width="1.5" rx="3" />
+        <ellipse cx="692" cy="72" rx="28" ry="18" fill="none" stroke="#3a1020" stroke-width="1" />
+        <!-- 냉장고 -->
+        <rect x="800" y="46" width="60" height="90" fill="#160810" stroke="#3a1020" stroke-width="1.5" rx="2" />
+        <text x="830" y="96" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c2707f"
+          text-anchor="middle">냉장고</text>
+        <!-- 라벨 -->
+        <text x="765" y="255" font-family="Inter,'Noto Sans KR',sans-serif" font-size="16" font-weight="500"
+          fill="#c8843a" text-anchor="middle">주 방</text>
+        <text x="765" y="272" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">블랙 대리석 아일랜드</text>
+
+        <!-- ═══ 다이닝 (우중) ═══ -->
+        <rect x="623" y="288" width="290" height="129" fill="url(#gR1)" />
+        <!-- 테이블 -->
+        <rect x="680" y="310" width="160" height="85" fill="#1a0810" stroke="#4a1020" stroke-width="1.5" rx="2" />
+        <!-- 의자들 -->
+        <rect x="652" y="330" width="28" height="50" fill="#160810" stroke="#3a1020" stroke-width="1" rx="2" />
+        <rect x="840" y="330" width="28" height="50" fill="#160810" stroke="#3a1020" stroke-width="1" rx="2" />
+        <rect x="700" y="295" width="40" height="18" fill="#160810" stroke="#3a1020" stroke-width="1" rx="2" />
+        <rect x="778" y="295" width="40" height="18" fill="#160810" stroke="#3a1020" stroke-width="1" rx="2" />
+        <!-- 펜던트 조명 -->
+        <circle cx="760" cy="307" r="8" fill="none" stroke="#c8843a" stroke-width="1.5" stroke-dasharray="3,2" />
+        <line x1="760" y1="288" x2="760" y2="299" stroke="#6b4838" stroke-width="1.5" />
+        <text x="760" y="390" font-family="Inter,'Noto Sans KR',sans-serif" font-size="14" font-weight="400"
+          fill="#c8843a" text-anchor="middle">다이닝 코너</text>
+        <text x="760" y="406" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">거실 연결 · 조도 낮은 펜던트 1개</text>
+
+        <!-- ═══ 현관·포치 (하단) ═══ -->
+        <rect x="215" y="425" width="698" height="158" fill="url(#gR1)" />
+        <text x="564" y="508" font-family="Inter,'Noto Sans KR',sans-serif" font-size="18" font-weight="400"
+          fill="#c8843a" text-anchor="middle">현관 · 포치</text>
+        <text x="564" y="528" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#b69e8c"
+          text-anchor="middle">넓고 비어 있음 · 신발 없음</text>
+        <text x="564" y="545" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#b69e8c"
+          text-anchor="middle">무인 경비 연동 · 2중 잠금</text>
+
+        <!-- 정문 -->
+        <rect x="440" y="583" width="120" height="7" fill="#0a0a0c" />
+        <line x1="440" y1="583" x2="440" y2="590" stroke="#6b1525" stroke-width="3" />
+        <line x1="560" y1="583" x2="560" y2="590" stroke="#6b1525" stroke-width="3" />
+        <path d="M 440 583 Q 500 558 560 583" fill="rgba(107,21,37,.08)" stroke="#6b1525" stroke-width="1.5"
+          stroke-dasharray="4,2" />
+        <text x="500" y="614" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#c2707f"
+          text-anchor="middle">정문 — 강남구 청담동 인근</text>
+        <text x="500" y="628" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#c2707f"
+          text-anchor="middle">노출 콘크리트 + 철제 · 간판·명패 없음</text>
+
+        <!-- N -->
+        <text x="946" y="50" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="bold"
+          fill="#b52d3e">N</text>
+        <line x1="946" y1="56" x2="946" y2="74" stroke="#b52d3e" stroke-width="2" />
+        <polygon points="940,74 946,88 952,74" fill="#b52d3e" />
+      </svg>
+    </div>
+
+    <div class="section-label">공간 구성</div>
+    <div class="grid">
+      <div class="card"><strong>거실</strong><span>창 면 전체 통유리. 소파·테이블 최소. 수혁이 넥타이를 먼저 푸는 공간. 자연광 최대.</span>
+        <div class="tag">모노크롬 미니멀</div>
+      </div>
+      <div class="card"><strong>주방</strong><span>블랙 대리석 아일랜드. 수혁은 거의 사용 안 함. 냉장고 있음.</span>
+        <div class="tag">거의 사용 안 함</div>
+      </div>
+      <div class="card"><strong>다이닝 코너</strong><span>거실 연결. 조도 낮은 펜던트 1개. 두 사람이 함께 밥 먹는 공간.</span>
+        <div class="tag">조도 낮음</div>
+      </div>
+      <div class="card"><strong>현관 · 포치</strong><span>넓고 비어 있음. 신발 없음. 무인 경비 연동. 2중 잠금.</span>
+        <div class="tag">간판·명패 없음</div>
+      </div>
+      <div class="card"><strong>사용인실 · 유틸</strong><span>청소·세탁·식재료 1인. 상주 아님. 은호가 일정 조율.</span>
+        <div class="tag">비공개 동선</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

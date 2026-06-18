@@ -1,6 +1,8 @@
 import './index.css'
 import { RoomButton } from './components/RoomPopup'
 import Anniversary from './components/Anniversary'
+import TasteRadar from './components/TasteRadar'
+import KinkSection from './components/KinkSection'
 import { suhyeokCardHTML, eunhoCardHTML, bannerHTML, vocabHTML } from './data/profileData'
 
 // HTML 문자열에서 섹션별로 분리
@@ -32,11 +34,14 @@ export default function App() {
   const sHead = parseHead(suhyeokCardHTML)
   const eHead = parseHead(eunhoCardHTML)
 
-  // 공간 섹션 앞까지만 파싱 (공간은 RoomButton 포함이라 별도 처리)
-  const [sBefore] = suhyeokCardHTML.split('<!-- 공간 · 인테리어 -->')
-  const [eBefore] = eunhoCardHTML.split('<!-- 공간 · 인테리어 -->')
-  const sSections = parseSections(sBefore)
-  const eSections = parseSections(eBefore)
+  // 미각/공간 섹션은 각각 React 컴포넌트로 별도 렌더링하므로
+  // 일반 섹션 파싱에서는 그 앞부분만 사용한다
+  const [sBeforeRoom] = suhyeokCardHTML.split('<!-- 공간 · 인테리어 -->')
+  const [eBeforeRoom] = eunhoCardHTML.split('<!-- 공간 · 인테리어 -->')
+  const [sBeforeTaste] = sBeforeRoom.split('<!-- 미각 레이더 -->')
+  const [eBeforeTaste] = eBeforeRoom.split('<!-- 미각 레이더 -->')
+  const sSections = parseSections(sBeforeTaste)
+  const eSections = parseSections(eBeforeTaste)
 
   // 공간 섹션 ul 내용 추출
   const sRoomList = extractUlContent(suhyeokCardHTML)
@@ -66,6 +71,22 @@ export default function App() {
               dangerouslySetInnerHTML={{ __html: eSections[i] || '' }} />
           </>
         ))}
+
+        {/* 미각 선호도 행 */}
+        <div className="card card-s psection">
+          <TasteRadar type="s" />
+        </div>
+        <div className="card card-e psection">
+          <TasteRadar type="e" />
+        </div>
+
+        {/* 성적 취향 · 페티시 행 */}
+        <div className="card card-s psection">
+          <KinkSection type="s" />
+        </div>
+        <div className="card card-e psection">
+          <KinkSection type="e" />
+        </div>
 
         {/* 공간 섹션 행 */}
         <div className="card card-s psection">

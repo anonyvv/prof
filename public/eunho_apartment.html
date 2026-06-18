@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>지은호 아파트</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+    :root {
+      --black: #0a0a0c;
+      --char: #0e1018;
+      --blue: #6b9fd4;
+      --blue-dim: #3a5f8a;
+      --gold: #e0c060;
+      --silver: #9090a8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px 72px;
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--blue);
+      letter-spacing: .06em;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .sub {
+      font-size: .7rem;
+      color: var(--silver);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .div {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-dim), transparent);
+      margin: 10px auto 34px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .view-block {
+      width: 100%;
+      max-width: 1060px;
+      display: block;
+    }
+
+    .section-label {
+      width: 100%;
+      max-width: 1060px;
+      font-size: .72rem;
+      color: var(--silver);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      padding: 8px 0 12px;
+      border-bottom: 1px solid rgba(107, 159, 212, .2);
+      margin-bottom: 24px;
+      margin-top: 48px;
+    }
+
+    .section-label:first-of-type {
+      margin-top: 0;
+    }
+
+    .grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 9px;
+      width: 100%;
+      max-width: 1060px;
+    }
+
+    .card {
+      background: var(--char);
+      border: 1px solid rgba(107, 159, 212, .18);
+      padding: 12px 15px;
+      transition: border-color .3s;
+    }
+
+    .card:hover {
+      border-color: var(--blue-dim);
+    }
+
+    .card strong {
+      display: block;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 3px;
+    }
+
+    .card span {
+      font-size: .68rem;
+      color: var(--silver);
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .6rem;
+      background: rgba(107, 159, 212, .12);
+      color: #7ab0d8;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* 트랙 (배경) */
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* 썸 (핸들) */
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>지은호의 아파트</h1>
+  <p class="sub">Ji Eunho · Apartment · Full Layout</p>
+  <div class="div"></div>
+  <div class="section-label">평면도</div>
+  <div class="view-block">
+    <svg viewBox="0 0 980 760" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gF" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0a1020" />
+          <stop offset="100%" stop-color="#060810" />
+        </linearGradient>
+        <linearGradient id="gR" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#081018" />
+          <stop offset="100%" stop-color="#050810" />
+        </linearGradient>
+        <linearGradient id="gCD" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#0c1828" />
+          <stop offset="100%" stop-color="#080e1c" />
+        </linearGradient>
+        <radialGradient id="gAudio" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#6b9fd4" stop-opacity=".2" />
+          <stop offset="100%" stop-color="#6b9fd4" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+
+      <!-- 외벽 -->
+      <rect x="60" y="40" width="860" height="660" fill="none" stroke="#3a5f8a" stroke-width="14" rx="2" />
+      <!-- 바닥 -->
+      <rect x="67" y="47" width="846" height="646" fill="url(#gF)" />
+      <!-- 그리드 -->
+      <g stroke="#0e1828" stroke-width="0.4" opacity="0.5">
+        <line x1="67" y1="97" x2="913" y2="97" />
+        <line x1="67" y1="147" x2="913" y2="147" />
+        <line x1="67" y1="197" x2="913" y2="197" />
+        <line x1="67" y1="247" x2="913" y2="247" />
+        <line x1="67" y1="297" x2="913" y2="297" />
+        <line x1="67" y1="347" x2="913" y2="347" />
+        <line x1="67" y1="397" x2="913" y2="397" />
+        <line x1="67" y1="447" x2="913" y2="447" />
+        <line x1="67" y1="497" x2="913" y2="497" />
+        <line x1="67" y1="547" x2="913" y2="547" />
+        <line x1="67" y1="597" x2="913" y2="597" />
+        <line x1="67" y1="647" x2="913" y2="647" />
+        <line x1="117" y1="47" x2="117" y2="693" />
+        <line x1="167" y1="47" x2="167" y2="693" />
+        <line x1="217" y1="47" x2="217" y2="693" />
+        <line x1="267" y1="47" x2="267" y2="693" />
+        <line x1="317" y1="47" x2="317" y2="693" />
+        <line x1="367" y1="47" x2="367" y2="693" />
+        <line x1="417" y1="47" x2="417" y2="693" />
+        <line x1="467" y1="47" x2="467" y2="693" />
+        <line x1="517" y1="47" x2="517" y2="693" />
+        <line x1="567" y1="47" x2="567" y2="693" />
+        <line x1="617" y1="47" x2="617" y2="693" />
+        <line x1="667" y1="47" x2="667" y2="693" />
+        <line x1="717" y1="47" x2="717" y2="693" />
+        <line x1="767" y1="47" x2="767" y2="693" />
+        <line x1="817" y1="47" x2="817" y2="693" />
+        <line x1="867" y1="47" x2="867" y2="693" />
+      </g>
+
+      <!-- ═══ CD장 (좌측 벽 전체) ═══ -->
+      <rect x="67" y="47" width="52" height="646" fill="url(#gCD)" stroke="#3a5f8a" stroke-width="3" />
+      <rect x="75" y="55" width="36" height="630" fill="rgba(10,20,36,.9)" stroke="#1e3050" stroke-width="1" />
+      <!-- 칸 구분 -->
+      <line x1="75" y1="130" x2="111" y2="130" stroke="#1e3050" stroke-width="1" />
+      <line x1="75" y1="210" x2="111" y2="210" stroke="#1e3050" stroke-width="1" />
+      <line x1="75" y1="290" x2="111" y2="290" stroke="#1e3050" stroke-width="1" />
+      <line x1="75" y1="370" x2="111" y2="370" stroke="#1e3050" stroke-width="1" />
+      <line x1="75" y1="450" x2="111" y2="450" stroke="#1e3050" stroke-width="1" />
+      <line x1="75" y1="530" x2="111" y2="530" stroke="#1e3050" stroke-width="1" />
+      <line x1="75" y1="610" x2="111" y2="610" stroke="#1e3050" stroke-width="1" />
+      <!-- CD들 -->
+      <rect x="78" y="58" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".7" />
+      <rect x="85" y="58" width="5" height="68" rx="1" fill="#3a5f8a" opacity=".6" />
+      <rect x="92" y="58" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".5" />
+      <rect x="99" y="58" width="5" height="68" rx="1" fill="#2a4060" opacity=".8" />
+      <rect x="78" y="134" width="5" height="68" rx="1" fill="#4a7090" opacity=".6" />
+      <rect x="85" y="134" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".55" />
+      <rect x="92" y="134" width="5" height="68" rx="1" fill="#3a5f8a" opacity=".7" />
+      <rect x="99" y="134" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".4" />
+      <rect x="78" y="214" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".65" />
+      <rect x="85" y="214" width="5" height="68" rx="1" fill="#2a4060" opacity=".7" />
+      <rect x="92" y="214" width="5" height="68" rx="1" fill="#4a7090" opacity=".5" />
+      <rect x="99" y="214" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".6" />
+      <rect x="78" y="294" width="5" height="68" rx="1" fill="#3a5f8a" opacity=".6" />
+      <rect x="85" y="294" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".7" />
+      <rect x="92" y="294" width="5" height="68" rx="1" fill="#2a4060" opacity=".5" />
+      <rect x="99" y="294" width="5" height="68" rx="1" fill="#4a7090" opacity=".65" />
+      <rect x="78" y="374" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".55" />
+      <rect x="85" y="374" width="5" height="68" rx="1" fill="#3a5f8a" opacity=".6" />
+      <rect x="92" y="374" width="5" height="68" rx="1" fill="#6b9fd4" opacity=".4" />
+      <rect x="99" y="374" width="5" height="68" rx="1" fill="#2a4060" opacity=".7" />
+      <text x="93" y="380" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#6b9fd4"
+        text-anchor="middle" transform="rotate(-90,93,380)">CD 장 — 벽 한 면 전체</text>
+
+      <!-- 내벽들 -->
+      <!-- 거실↔침실 -->
+      <rect x="119" y="47" width="8" height="370" fill="#080e18" stroke="#1e2a3a" stroke-width="1" />
+      <!-- 거실↔운동기구방 -->
+      <rect x="119" y="417" width="8" height="276" fill="#080e18" stroke="#1e2a3a" stroke-width="1" />
+      <!-- 거실↔주방 -->
+      <rect x="119" y="417" width="450" height="8" fill="#080e18" stroke="#1e2a3a" stroke-width="1" />
+      <!-- 침실↔운동기구방 -->
+      <rect x="119" y="367" width="450" height="8" fill="#080e18" stroke="#1e2a3a" stroke-width="1" />
+      <!-- 주방↔욕실 -->
+      <rect x="569" y="417" width="8" height="180" fill="#080e18" stroke="#1e2a3a" stroke-width="1" />
+      <!-- 주방↔현관 -->
+      <rect x="569" y="47" width="8" height="370" fill="#080e18" stroke="#1e2a3a" stroke-width="1" />
+
+      <!-- ═══ 거실 ═══ -->
+      <rect x="127" y="47" width="442" height="320" fill="url(#gR)" stroke="none" />
+      <!-- 창 (상단) -->
+      <rect x="127" y="47" width="442" height="8" fill="rgba(107,159,212,.2)" stroke="#3a5f8a" stroke-width="1" />
+      <text x="348" y="58" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#3a5f8a"
+        text-anchor="middle">창</text>
+      <!-- 소파 -->
+      <rect x="150" y="155" width="255" height="110" fill="#0e1828" stroke="#6b9fd4" stroke-width="2" rx="4" />
+      <rect x="150" y="155" width="255" height="28" fill="#121e34" stroke="#4a7090" stroke-width="1.2" rx="3" />
+      <!-- 쿠션들 -->
+      <rect x="158" y="190" width="55" height="62" fill="#0c1628" stroke="#3a5f8a" stroke-width="1" rx="3" />
+      <rect x="219" y="190" width="55" height="62" fill="#0c1628" stroke="#3a5f8a" stroke-width="1" rx="3" />
+      <rect x="280" y="190" width="55" height="62" fill="#0c1628" stroke="#3a5f8a" stroke-width="1" rx="3" />
+      <rect x="341" y="190" width="56" height="62" fill="#0a1420" stroke="#2a3a50" stroke-width="1" rx="3" />
+      <!-- 오디오 시스템 -->
+      <ellipse cx="200" cy="130" rx="55" ry="25" fill="url(#gAudio)" />
+      <rect x="148" y="105" width="130" height="58" fill="#0c1828" stroke="#6b9fd4" stroke-width="1.8" rx="2" />
+      <!-- VU 미터 -->
+      <rect x="158" y="116" width="4" height="20" rx="1" fill="#6b9fd4" opacity=".75" />
+      <rect x="165" y="120" width="4" height="16" rx="1" fill="#6b9fd4" opacity=".6" />
+      <rect x="172" y="113" width="4" height="23" rx="1" fill="#6b9fd4" opacity=".85" />
+      <rect x="179" y="117" width="4" height="19" rx="1" fill="#6b9fd4" opacity=".55" />
+      <rect x="186" y="111" width="4" height="25" rx="1" fill="#6b9fd4" opacity=".7" />
+      <!-- ON 표시등 -->
+      <circle cx="215" cy="124" r="7" fill="#6b9fd4" opacity=".95" />
+      <circle cx="215" cy="124" r="12" fill="none" stroke="#6b9fd4" stroke-width=".8" opacity=".3" />
+      <!-- 볼륨 노브 -->
+      <circle cx="245" cy="124" r="10" fill="#1e3050" stroke="#6b9fd4" stroke-width="1.2" />
+      <line x1="245" y1="114" x2="245" y2="118" stroke="#6b9fd4" stroke-width="2" />
+      <text x="213" y="152" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#6b9fd4"
+        text-anchor="middle">오디오 (상시 ON)</text>
+      <!-- 거실 라벨 -->
+      <text x="430" y="115" font-family="Inter,'Noto Sans KR',sans-serif" font-size="16" font-weight="500"
+        fill="#c8843a" text-anchor="middle">거 실</text>
+      <text x="430" y="135" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#7090a8"
+        text-anchor="middle">진한 그레이 · 차분하고 묵직한 분위기</text>
+      <text x="430" y="152" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#4a6880"
+        text-anchor="middle">항상 켜진 오디오 — 적막이 싫음</text>
+
+      <!-- ═══ 침실 ═══ -->
+      <rect x="127" y="55" width="0" height="0" />
+      <!-- 침실은 우측 상단 -->
+      <rect x="577" y="47" width="336" height="200" fill="url(#gR)" stroke="none" />
+      <!-- 침대 -->
+      <rect x="595" y="62" width="175" height="140" fill="#0a1420" stroke="#3a5f8a" stroke-width="1.8" rx="3" />
+      <rect x="595" y="62" width="175" height="25" fill="#0e1a2e" stroke="#2a3a50" stroke-width="1.2" rx="2" />
+      <!-- 베개 -->
+      <rect x="604" y="93" width="70" height="34" fill="#0c1628" stroke="#1e2a3a" stroke-width="1" rx="3" />
+      <rect x="689" y="93" width="70" height="34" fill="#0c1628" stroke="#1e2a3a" stroke-width="1" rx="3" />
+      <!-- 협탁 -->
+      <rect x="782" y="78" width="52" height="52" fill="#080e1a" stroke="#1e2a3a" stroke-width="1" rx="2" />
+      <text x="808" y="108" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#3a5f8a"
+        text-anchor="middle">협탁</text>
+      <!-- 라벨 -->
+      <text x="755" y="170" font-family="Inter,'Noto Sans KR',sans-serif" font-size="14" font-weight="400"
+        fill="#c8843a" text-anchor="middle">침 실</text>
+      <text x="755" y="188" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#5a7898"
+        text-anchor="middle">쇼트 슬리퍼 · 본능적 각성</text>
+      <text x="755" y="204" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#3a5070"
+        text-anchor="middle" font-style="italic">차수혁 미방문 (캐논)</text>
+      <!-- 침실 문 -->
+      <line x1="577" y1="220" x2="577" y2="280" stroke="#080e18" stroke-width="10" />
+      <path d="M 585 220 Q 585 260 625 260" fill="none" stroke="#3a5f8a" stroke-width="2" stroke-dasharray="4,2" />
+
+      <!-- ═══ 운동기구 방 ═══ -->
+      <rect x="577" y="247" width="336" height="178" fill="url(#gR)" stroke="none" />
+      <!-- 바벨 랙 -->
+      <rect x="597" y="268" width="90" height="55" fill="#080e1a" stroke="#1e2a3a" stroke-width="1.5" rx="2" />
+      <line x1="603" y1="295" x2="682" y2="295" stroke="#3a5f8a" stroke-width="3" />
+      <circle cx="603" cy="295" r="10" fill="#0c1628" stroke="#1e3050" stroke-width="1.5" />
+      <circle cx="682" cy="295" r="10" fill="#0c1628" stroke="#1e3050" stroke-width="1.5" />
+      <text x="642" y="338" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#3a5f8a"
+        text-anchor="middle">바벨 랙</text>
+      <!-- 덤벨 -->
+      <rect x="706" y="268" width="100" height="38" fill="#080e1a" stroke="#1e2a3a" stroke-width="1.2" rx="2" />
+      <circle cx="724" cy="287" r="10" fill="#0c1628" stroke="#1e3050" stroke-width="1.5" />
+      <circle cx="748" cy="287" r="10" fill="#0c1628" stroke="#1e3050" stroke-width="1.5" />
+      <circle cx="772" cy="287" r="10" fill="#0c1628" stroke="#1e3050" stroke-width="1.5" />
+      <circle cx="796" cy="287" r="10" fill="#0c1628" stroke="#1e3050" stroke-width="1.5" />
+      <text x="756" y="326" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#3a5f8a"
+        text-anchor="middle">덤벨 세트</text>
+      <!-- 매트 -->
+      <rect x="597" y="358" width="295" height="52" fill="#080e18" stroke="#1e2a3a" stroke-width="1.5" rx="3" />
+      <text x="744" y="389" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#4a6880"
+        text-anchor="middle">운동 매트</text>
+      <!-- 라벨 -->
+      <text x="744" y="342" font-family="Inter,'Noto Sans KR',sans-serif" font-size="14" font-weight="400"
+        fill="#c8843a" text-anchor="middle">운동기구 방</text>
+      <text x="744" y="428" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#3a5070"
+        text-anchor="middle">운동기구만 가득 · 두 번째 방</text>
+
+      <!-- ═══ 주방 ═══ -->
+      <rect x="127" y="425" width="442" height="195" fill="url(#gR)" stroke="none" />
+      <!-- 2인 식탁 -->
+      <rect x="158" y="460" width="125" height="90" fill="#080e1a" stroke="#1e3050" stroke-width="1.5" rx="2" />
+      <!-- 의자 -->
+      <rect x="130" y="474" width="28" height="62" fill="#0c1628" stroke="#1a2838" stroke-width="1" rx="2" />
+      <rect x="283" y="474" width="28" height="62" fill="#0c1628" stroke="#1a2838" stroke-width="1" rx="2" />
+      <text x="220" y="510" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#4a6880"
+        text-anchor="middle">2인 식탁</text>
+      <text x="220" y="526" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#2a3a50"
+        text-anchor="middle">거의 안 앉음</text>
+      <!-- 냉장고 -->
+      <rect x="330" y="440" width="70" height="130" fill="#080e1a" stroke="#1e3050" stroke-width="1.8" rx="2" />
+      <line x1="330" y1="505" x2="400" y2="505" stroke="#1a2838" stroke-width="1" />
+      <rect x="338" y="447" width="54" height="52" fill="#0c1628" stroke="#1a2838" stroke-width=".8" rx="1" />
+      <!-- 생수 캔들 -->
+      <rect x="342" y="452" width="7" height="30" rx="3" fill="#6b9fd4" opacity=".7" />
+      <rect x="351" y="452" width="7" height="30" rx="3" fill="#6b9fd4" opacity=".55" />
+      <rect x="360" y="454" width="7" height="28" rx="3" fill="#3a5f8a" opacity=".7" />
+      <rect x="369" y="454" width="7" height="28" rx="3" fill="#3a5f8a" opacity=".6" />
+      <text x="365" y="517" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#3a5f8a"
+        text-anchor="middle">냉장고</text>
+      <text x="365" y="531" font-family="Inter,'Noto Sans KR',sans-serif" font-size="8" fill="#2a3a50"
+        text-anchor="middle">생수·맥주만</text>
+      <!-- 주방 라벨 -->
+      <text x="460" y="510" font-family="Inter,'Noto Sans KR',sans-serif" font-size="15" font-weight="400"
+        fill="#c8843a" text-anchor="middle">주 방</text>
+      <text x="460" y="530" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#5a7898"
+        text-anchor="middle">2인 식탁 · 냉장고엔 생수·맥주만</text>
+
+      <!-- ═══ 욕실 ═══ -->
+      <rect x="577" y="425" width="215" height="200" fill="url(#gR)" stroke="none" />
+      <!-- 샤워 -->
+      <rect x="592" y="442" width="88" height="88" fill="#060c18" stroke="#1e3050" stroke-width="1.5" rx="3" />
+      <ellipse cx="636" cy="486" rx="30" ry="30" fill="none" stroke="#1e3050" stroke-width="1.2"
+        stroke-dasharray="3,2" />
+      <circle cx="636" cy="486" r="6" fill="#1e3050" />
+      <text x="636" y="490" font-family="Inter,'Noto Sans KR',sans-serif" font-size="10" fill="#3a5070"
+        text-anchor="middle">샤워</text>
+      <!-- 싱크 -->
+      <rect x="697" y="442" width="80" height="65" fill="#060c18" stroke="#1e3050" stroke-width="1.2" rx="3" />
+      <ellipse cx="737" cy="475" rx="25" ry="18" fill="none" stroke="#1e3050" stroke-width="1" />
+      <text x="737" y="522" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#3a5070"
+        text-anchor="middle">싱크</text>
+      <!-- 욕실 라벨 -->
+      <text x="685" y="580" font-family="Inter,'Noto Sans KR',sans-serif" font-size="14" font-weight="400"
+        fill="#c8843a" text-anchor="middle">욕 실</text>
+      <text x="685" y="598" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#4a6880"
+        text-anchor="middle">샤워 + 싱크 · 건메탈</text>
+
+      <!-- ═══ 현관 ═══ -->
+      <rect x="127" y="620" width="442" height="73" fill="url(#gR)" stroke="none" />
+      <text x="348" y="665" font-family="Inter,'Noto Sans KR',sans-serif" font-size="13" font-weight="400"
+        fill="#c8843a" text-anchor="middle">현 관</text>
+      <text x="348" y="682" font-family="Inter,'Noto Sans KR',sans-serif" font-size="9" fill="#4a6880"
+        text-anchor="middle">주거 건물 복도 안쪽</text>
+
+      <!-- 정문 -->
+      <rect x="420" y="693" width="140" height="8" fill="#0a0a0c" />
+      <line x1="420" y1="693" x2="420" y2="700" stroke="#3a5f8a" stroke-width="3" />
+      <line x1="560" y1="693" x2="560" y2="700" stroke="#3a5f8a" stroke-width="3" />
+      <path d="M 420 693 Q 490 668 560 693" fill="rgba(107,159,212,.06)" stroke="#3a5f8a" stroke-width="1.5"
+        stroke-dasharray="4,2" />
+      <text x="490" y="726" font-family="Inter,'Noto Sans KR',sans-serif" font-size="11" fill="#3a5f8a"
+        text-anchor="middle">정문 — 주거 건물</text>
+
+      <!-- N -->
+      <text x="946" y="60" font-family="Inter,'Noto Sans KR',sans-serif" font-size="12" font-weight="bold"
+        fill="#6b9fd4">N</text>
+      <line x1="946" y1="66" x2="946" y2="84" stroke="#6b9fd4" stroke-width="2" />
+      <polygon points="940,84 946,98 952,84" fill="#6b9fd4" />
+    </svg>
+  </div>
+
+  <div class="section-label">공간 구성</div>
+  <div class="grid">
+    <div class="card"><strong>CD장 — 좌측 벽 전체</strong><span>벽 한 면을 가득 채울 정도의 존재감. 지은호의 음악 취향 전부.</span>
+      <div class="tag">압도적 존재감</div>
+    </div>
+    <div class="card"><strong>소파 — 거실 중심</strong><span>비교적 넓음. 몸을 누일 수 있는 널찍한 소파.</span>
+      <div class="tag">널찍함</div>
+    </div>
+    <div class="card"><strong>오디오 — 상시 ON</strong><span>적막이 싫어 항상 켜두는 습관. 집 안에 늘 소리가 있음.</span>
+      <div class="tag">VU 미터 점등</div>
+    </div>
+    <div class="card"><strong>침실</strong><span>쇼트 슬리퍼. 수혁 체온·향 느껴지면 안도감 → 더 꼭 끌어안고 다시 잠드는 루틴.</span>
+      <div class="tag">차수혁 미방문 (캐논)</div>
+    </div>
+    <div class="card"><strong>운동기구 방</strong><span>두 번째 방. 운동기구만 가득. 바벨·덤벨·매트. 체력 관리 공간.</span>
+      <div class="tag">전용 공간</div>
+    </div>
+    <div class="card"><strong>주방</strong><span>2인 식탁 — 언제 앉았는지 기억도 안 남. 냉장고엔 생수·맥주만 정렬.</span>
+      <div class="tag">혼자 살던 흔적</div>
+    </div>
+  </div>
+</body>
+
+</html>

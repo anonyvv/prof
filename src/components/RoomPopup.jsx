@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { roomSContent, roomEContent } from '../data/roomContent';
 
-function Modal({ id, title, titleColor, children, onClose }) {
+function Modal({ title, titleColor, children, onClose }) {
   return (
     <div
       className="room-overlay open"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="room-modal" style={{ maxWidth: id === 'room-s' ? '820px' : '700px' }}>
+      <div className="room-modal" style={{ maxWidth: '900px' }}>
         <button className="room-modal-close" onClick={onClose}>✕</button>
         <p className="room-modal-title" style={{ color: titleColor }}>{title}</p>
         {children}
@@ -16,21 +15,18 @@ function Modal({ id, title, titleColor, children, onClose }) {
   );
 }
 
-// 차수혁 공간 — 탭 구조
 function SuhyeokRoom({ onClose }) {
   const [tab, setTab] = useState('house');
 
   const tabs = [
-    { id: 'house', label: '집' },
-    { id: 'room', label: '방' },
-    { id: 'wolf', label: '늑대굴' },
+    { id: 'house', label: '집', src: '/villa_floorplan.html' },
+    { id: 'wolf', label: '늑대굴', src: '/wolfden_v5.html' },
   ];
 
   return (
-    <Modal id="room-s" title="차수혁의 공간" titleColor="#b52d3e" onClose={onClose}>
-      {/* 탭 버튼 */}
+    <Modal title="차수혁의 공간" titleColor="#b52d3e" onClose={onClose}>
       <div style={{
-        display: 'flex', gap: '.5rem', marginBottom: '1.2rem',
+        display: 'flex', gap: '.5rem', marginBottom: '1rem',
         borderBottom: '1px solid rgba(255,255,255,.08)', paddingBottom: '.6rem'
       }}>
         {tabs.map(t => (
@@ -48,42 +44,27 @@ function SuhyeokRoom({ onClose }) {
           >{t.label}</button>
         ))}
       </div>
-
-      {/* 탭 패널 */}
       {tabs.map(t => (
         <div key={t.id} style={{ display: tab === t.id ? '' : 'none' }}>
-          <div className="room-svg-wrap"
-            dangerouslySetInnerHTML={{ __html: roomSContent[t.id].svg }}
+          <iframe
+            src={t.src}
+            style={{ width: '100%', height: '580px', border: 'none', borderRadius: '2px' }}
+            title={t.label}
           />
-          <div className="room-legend">
-            {roomSContent[t.id].legend.map((item, i) => (
-              <div key={i} className="room-legend-item">
-                <div className="room-legend-dot" style={item.style} />
-                {item.text}
-              </div>
-            ))}
-          </div>
         </div>
       ))}
     </Modal>
   );
 }
 
-// 지은호 공간
 function EunhoRoom({ onClose }) {
   return (
-    <Modal id="room-e" title="지은호의 집" titleColor="#6b9fd4" onClose={onClose}>
-      <div className="room-svg-wrap"
-        dangerouslySetInnerHTML={{ __html: roomEContent.svg }}
+    <Modal title="지은호의 집" titleColor="#6b9fd4" onClose={onClose}>
+      <iframe
+        src="/eunho_apartment.html"
+        style={{ width: '100%', height: '580px', border: 'none', borderRadius: '2px' }}
+        title="지은호 아파트"
       />
-      <div className="room-legend">
-        {roomEContent.legend.map((item, i) => (
-          <div key={i} className="room-legend-item">
-            <div className="room-legend-dot" style={item.style} />
-            {item.text}
-          </div>
-        ))}
-      </div>
     </Modal>
   );
 }
@@ -94,10 +75,7 @@ export function RoomButton({ type }) {
 
   return (
     <>
-      <button
-        className="room-btn"
-        onClick={() => setOpen(true)}
-      >▣ 공간 보기</button>
+      <button className="room-btn" onClick={() => setOpen(true)}>▣ 공간 보기</button>
       {open && (
         isS
           ? <SuhyeokRoom onClose={() => setOpen(false)} />
